@@ -1,0 +1,24 @@
+@import "../scss/constans.scss";
+
+.main {
+    display: flex;
+    align-items: center;
+    padding: toRem(200) 0;   
+    row-gap: toRem(30);
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    &__authorization {
+        display: flex;
+        column-gap: toRem(30);
+    }
+    & h1 {
+        font-size: toRem(36);
+    }
+    &__link {
+        &:hover {
+            color: $accent;
+            border-bottom: toRem(1) solid $accent;
+        }
+    }
+}

@@ -1,0 +1,68 @@
+@import "../../scss/constans.scss";
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(20);
+    padding-bottom: toRem(10);
+}
+.toast {
+    width: toRem(100);
+    height: toRem(40);
+}
+.login {
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 4.859rem 0;
+    width: 100%;
+    row-gap: toRem(20);
+    height: 100%;
+    &__title {
+        font-size: toRem(36);
+        display: flex;
+        justify-content: left;
+        padding: toRem(20) 0;
+    }
+    &__input {
+        min-width: toRem(400);
+        max-height: toRem(90);
+    }
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(20);
+        & p {
+            font-size: toRem(20);
+        }
+        &__registration,
+        &__home {
+            position: relative; /* Добавлено относительное позиционирование для родительского элемента */
+            color: $accent; /* Унаследует цвет текста */
+            &:hover {
+                opacity: 0.7;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: toRem(-5); /* Вы можете изменить это значение, чтобы настроить положение линии */
+                width: 0;
+                height: 2px; /* Вы можете изменить это значение, чтобы настроить высоту линии */
+                background-color: $accent; /* Используется текущий цвет текста */
+                transition: width 0.3s ease-in-out; /* Плавный переход ширины */
+            }
+            &:hover::after {
+                width: 100%; /* Ширина при наведении */
+            }
+        }
+    }
+    &__choises {
+        display: flex;
+        justify-content: space-between;
+    }
+}

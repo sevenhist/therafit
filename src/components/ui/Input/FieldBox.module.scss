@@ -1,0 +1,51 @@
+@import '../../../scss/constans.scss';
+
+.fieldbox {
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(5);
+    position: relative;
+}
+.input {
+    border: toRem(1) solid #e9e9e9;
+    outline: none; 
+    border-radius: toRem(3);
+    height: toRem(40);
+    padding: 0 toRem(12);
+    &:focus {
+        border-color: $accent;
+    } 
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+}
+.red__input {
+    border-color: $red;
+    &:focus {
+        border-color: $red;
+    } 
+}
+.error__field {
+    display: flex;
+    align-items: center;
+    column-gap: toRem(5);
+    color: $red;
+    font-size: toRem(15);
+}
+.error__field svg {
+    height: toRem(20);
+    width: toRem(20);
+}
+.normal__title {
+    font-size: toRem(15);
+    margin-block-start: 0;
+    margin-block-end: toRem(5);
+}
+.red__title {
+    color: $red;
+    font-size: toRem(15);
+    margin-block-start: 0;
+    margin-block-end: toRem(5);
+}

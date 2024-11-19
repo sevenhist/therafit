@@ -1,0 +1,25 @@
+//@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+@import "constans";
+@import "null";
+@import "common";
+
+.App {
+    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    [data-theme="dark"] & {
+        background-color: $blackTextColor;
+        color: $whiteColor;
+    }
+}
+
+::-webkit-scrollbar {
+    width: toRem(3);
+    height: toRem(3);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $accent;
+}
