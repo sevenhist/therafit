@@ -6,6 +6,8 @@ import { ROUTES } from "../../routes/routes";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
+import useUserStore from "@/modules/userInformation/store";
+import { Header } from "@/components/Header";
 
 // Define a type for the form data
 interface FormData {
@@ -26,11 +28,11 @@ export const Registration: FC = () => {
         mode: 'all'
     })
 
-    //const fetchRegister = useUserStore(state => state.fetchRegistration)
+    const fetchRegister = useUserStore(state => state.fetchRegistration)
 
     const onSubmit: SubmitHandler<FormData> = (data) => {
-        console.log("This is data", data)
-        //fetchRegister(data.Name, data.Last_name, data.Email, data.Password)
+        fetchRegister(data.Name, data.Last_name, data.Email, data.Password)
+        //console.log("This is data", data)
     };
     const fields: Array<Field> = [
         {
@@ -85,6 +87,7 @@ export const Registration: FC = () => {
 
     return (
     <div className={s.registration}>
+        <Header />
         <form onSubmit={handleSubmit(onSubmit)} className={s.registration__form}>
         <h1 className={s.registration__title}>Sign up</h1>
             {
@@ -103,15 +106,12 @@ export const Registration: FC = () => {
                     />
                 ))
             }
-            <Button className={s.registration__submit} type="submit">Submit</Button>
-        </form>
-        <div className={s.registration__footer}>
-            <p>Do you want login ?</p>
-            <div className={s.registration__choises}>
-                <Link className={s.registration__footer__login} href={ROUTES.AUTH.login}>To Login</Link>
-                <Link className={s.registration__footer__home} href={ROUTES.home}>Return to Home</Link>
+            <Button className={s.registration__button} type="submit"><p>Sign up</p></Button>
+            <div className={s.registration__footer}>
+                <p className={s.registration__footer__text}>Already have an account?</p>
+                <Link className={s.registration__footer__login} href={ROUTES.AUTH.login}>Sign in</Link>
             </div>
-        </div>
+        </form>
     </div>
     );
 };

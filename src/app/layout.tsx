@@ -1,8 +1,5 @@
 'use client';
 import "../scss/null.scss"
-import { Inter } from "next/font/google";
-import s from "./Layout.module.scss"
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -11,10 +8,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className={s.content}>
+      <body>
           {children}
-        </div>
       </body>
     </html>
   );

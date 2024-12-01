@@ -1,0 +1,24 @@
+@import "../../scss/constans.scss";
+
+.header {
+    &__container {
+        padding: toRem(30) toRem(120);
+        width: 100%;
+    }
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    &__list {
+        display: flex;
+        column-gap: toRem(50);
+    }
+    &__link {
+        color: $greyTextColor;
+        font-size: toRem(12);
+        display: flex;
+        align-items: end;
+        &:hover {
+            color: $whiteColor;
+        }
+    }
+}

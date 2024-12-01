@@ -38,3 +38,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ### Mein Teil Dmytro
 1. npm i sass
 2. npm install react-hook-form --legacy-peer-deps
+3. npm install axios --legacy-peer-deps
+4. npm install zustand --legacy-peer-deps

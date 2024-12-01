@@ -6,6 +6,8 @@ import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
+import useUserStore from "@/modules/userInformation/store";
+import { Header } from "@/components/Header";
 
 
 interface FormData {
@@ -24,11 +26,11 @@ export const Login: FC<LoginProps> = () => {
     } = useForm<FormData>({
         mode: 'all'
     })
-    //const fetchLogin = useUserStore(state => state.fetchLogin)
+    const fetchLogin = useUserStore(state => state.fetchLogin)
 
     const onSubmit: SubmitHandler<FormData> = (data) => {
         console.log("On Login schicken: ", data)
-        //fetchLogin(data.Email, data.Password);
+        fetchLogin(data.Email, data.Password);
     };
     const fields: Array<Field> = [
         {
@@ -56,6 +58,7 @@ export const Login: FC<LoginProps> = () => {
 
     return (
         <div className={s.login}>
+            <Header />
             <form onSubmit={handleSubmit(onSubmit)} className={s.login__form}>
             <h1 className={s.login__title}>Sign in</h1>
                 {
@@ -74,15 +77,12 @@ export const Login: FC<LoginProps> = () => {
                         />
                     ))
                 }
-                <Button type="submit">Submit</Button>
-            </form>
-            <div className={s.login__footer}>
-                <p>Don't have an account yet ?</p>
-                <div className={s.login__choises}>
-                    <Link className={s.login__footer__registration} href={ROUTES.AUTH.registration}>To Registration</Link>
-                    <Link className={s.login__footer__home} href={ROUTES.home}>Return to Home</Link>
+                <Button type="submit" className={s.login__button}><p>Sign in</p></Button>
+                <div className={s.login__footer}>
+                    <p className={s.login__footer__text}>Don't have an account?</p>
+                    <Link className={s.login__footer__registration} href={ROUTES.AUTH.registration}><p>Sign up</p></Link>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
