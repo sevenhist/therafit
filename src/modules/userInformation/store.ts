@@ -50,7 +50,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     fetchGetAllUsers: async () => {
         try {
             const token = localStorage.getItem("accessToken");
-            const response = await axios.get("http://localhost:3001/api/users", {
+            const response = await axios.get("http://localhost:3001/api/auth/users", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -64,7 +64,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     },
     logout: async () => {
         try {
-            const response = await axios.get("http://localhost:3001/api/logout", {
+            const response = await axios.post("http://localhost:3001/api/auth/logout", {}, {
                 withCredentials: true
             });
             console.log(response, "THIS IS ACTIVATE RESPONSE")
@@ -80,19 +80,19 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     },
     fetchReloadPage: async () => {
         try {
-            const response = await axios.get("http://localhost:3001/api/get-user", {
+            const response = await axios.post("http://localhost:3001/api/auth/refresh", {}, {
                 withCredentials: true
             });
             // Handle successful login
-            const newUser = response.data.values.user;
-            console.log(response.data.values)
-            const token = response.data.values.token;
+            const newUser = response.data.data.user;
+            console.log(response.data.data)
+            const token = response.data.data.token;
             console.log("NEW USER: ", newUser)
             get().setAuth(true)
             localStorage.setItem('accessToken', token);
             set({ user: newUser });
             set({ isAuth: true }); // Set authentication flag if successful
-            get().fetchGetAllUsers()
+            //get().fetchGetAllUsers()
             //set({ message: response.data.values.message });
         } catch (error: any) {
             console.log(error.response?.data?.message || error.message);
@@ -113,7 +113,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             //set({ message: response.data.values.message });
 
             localStorage.setItem('accessToken', token);
-            get().fetchGetAllUsers()
+            //get().fetchGetAllUsers()
             set({ user: newUser });
             set({ isAuth: true }); // Set authentication flag if successful
 
@@ -148,7 +148,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             localStorage.setItem('accessToken', token);
 
             get().setAuth(true)
-            get().fetchGetAllUsers()
+            //get().fetchGetAllUsers()
 
             set({ user: newUser })
             set({ isAuth: true })

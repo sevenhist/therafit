@@ -7,6 +7,12 @@
     height: 100%;
     width: 100%;
     flex-direction: column;
+    &__info {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(30);
+        align-items: center;
+    }
     &__authorization {
         display: flex;
         column-gap: toRem(30);
