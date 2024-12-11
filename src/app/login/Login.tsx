@@ -77,7 +77,7 @@ export const Login: FC<LoginProps> = () => {
                         />
                     ))
                 }
-                <Button type="submit" className={s.login__button}><p>Sign in</p></Button>
+                <Button type="submit" className={s.login__button}>Sign in</Button>
                 <div className={s.login__footer}>
                     <p className={s.login__footer__text}>Don't have an account?</p>
                     <Link className={s.login__footer__registration} href={ROUTES.AUTH.registration}><p>Sign up</p></Link>

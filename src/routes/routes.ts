@@ -1,8 +1,9 @@
+
 export const ROUTES = {
     home: "/",
-    serverConnection: "serverConnection",
+    getUsers: "/getUsers",
     AUTH: {
         login: "/login",
-        registration: "/registration"
+        registration: "/registration",
     }
 }
