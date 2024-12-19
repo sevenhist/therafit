@@ -1,3 +1,5 @@
+import $api from "@/http";
+import { ROUTES } from "@/routes/routes";
 import axios from "axios";
 import { ApiError } from "next/dist/server/api-utils";
 import Error from "next/error";
@@ -26,26 +28,31 @@ export interface IUser {
 
 interface UserState {
     user: IUser | null,
-    isAuth: boolean,
     users: IUser[] | null,
+    isLoading: boolean,
+    setIsLoading: (load: boolean) => void,
     setAuth: (param: boolean) => void,
     setUser: (user: IUser) => void,
-    fetchLogin: (email: string, password: string) => void,
-    fetchRegistration: (name: string, last_name: string, email: string, password: string) => void,
-    fetchReloadPage: () => Promise<void>,
-    logout: () => void,
+    fetchLogin: (email: string, password: string) => Promise<boolean>,
+    fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<boolean>,
+    fetchRefreshAccessToken: () => Promise<void>,
+    fetchGetUser: () => void,
+    logout: (redirect: (url: string) => void) => void,
     fetchGetAllUsers: () => Promise<void>
 }
 
 const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     user: null,
-    isAuth: false,
     users: null,
+    isLoading: false,
     setAuth: (action: boolean) => set(() => ({
         isAuth: action,
     })),
     setUser: (user: IUser) => set(() => ({
         user: user,
+    })),
+    setIsLoading: (load: boolean) => set(() => ({
+        isLoading: load,
     })),
     fetchGetAllUsers: async () => {
         try {
@@ -57,12 +64,12 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             });
             console.log("USERS: ", response.data);
             set({ users: response.data.values });
-        } catch(error: any) {
+        } catch (error: any) {
             // Fehlerbehandlung
             throw new Error(error.response?.data?.message || error.message);
         }
     },
-    logout: async () => {
+    logout: async (redirect) => {
         try {
             const response = await axios.post("http://localhost:3001/api/auth/logout", {}, {
                 withCredentials: true
@@ -72,31 +79,42 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             set(() => ({
                 user: null,
                 isAuth: false,
-            }));    
+            }));
+            redirect(ROUTES.AUTH.login);
             return response;
-        } catch(error: any) {
+        } catch (error: any) {
             throw new Error(error.response?.data?.message || error.message);
         }
     },
-    fetchReloadPage: async () => {
+    fetchRefreshAccessToken: async () => {
         try {
-            const response = await axios.post("http://localhost:3001/api/auth/refresh", {}, {
+            const response = await axios.post("http://localhost:3001/api/auth/refreshAccessToken", {}, {
                 withCredentials: true
             });
             // Handle successful login
-            const newUser = response.data.data.user;
             console.log(response.data.data)
             const token = response.data.data.token;
-            console.log("NEW USER: ", newUser)
             get().setAuth(true)
             localStorage.setItem('accessToken', token);
-            set({ user: newUser });
-            set({ isAuth: true }); // Set authentication flag if successful
-            //get().fetchGetAllUsers()
-            //set({ message: response.data.values.message });
         } catch (error: any) {
             console.log(error.response?.data?.message || error.message);
         }
+    },
+    fetchGetUser: () => {
+        get().setIsLoading(true);
+        $api.get("/auth/getuser")
+            .then((response) => {
+                const user = response.data.data.user;
+                get().setUser(user);
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+            .finally(() => {
+                get().setIsLoading(false);
+            })
+        // Handle successful login
+        //get().setAuth(true)
     },
     fetchLogin: async (email: string, password: string) => {
         try {
@@ -111,13 +129,12 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             const token = response.data.data.token;
             console.log("INFO: ", response.data.data);
             //set({ message: response.data.values.message });
-
             localStorage.setItem('accessToken', token);
             //get().fetchGetAllUsers()
             set({ user: newUser });
-            set({ isAuth: true }); // Set authentication flag if successful
 
             console.log("THIS IS COOKE", document.cookie)
+            return true;
 
         } catch (error: any) {
             throw new Error(error.response?.data?.message || error.message);
@@ -132,26 +149,21 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
                     last_name: last_name,
                     email: email,
                     password: password,
-                    birth_date: "2004-12-03",
-                    currentWeight: 85,
-                    targetWeight: 70.0,
-                    gender: "male",
-                    height: 182
                 }, {
                 withCredentials: true
             }
             );
-            console.log("THIS IS AFTER REGISTER: ", response.data.data)
-            console.log("new user: ", response.data.data.user)
-            const newUser = response.data.data.user;
-            const token = response.data.data.token;
-            localStorage.setItem('accessToken', token);
+            //console.log("THIS IS AFTER REGISTER: ", response.data.data)
+            //console.log("new user: ", response.data.data.user)
+            //const newUser = response.data.data.user;
+            //const token = response.data.data.token;
+            //localStorage.setItem('accessToken', token);
 
-            get().setAuth(true)
+            //get().setAuth(true)
             //get().fetchGetAllUsers()
 
-            set({ user: newUser })
-            set({ isAuth: true })
+            //set({ user: newUser })
+            return true;
         } catch (error: any) {
             console.log("ERRROR", error.message)
             throw new Error(error.response?.data?.message || error.message);

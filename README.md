@@ -40,3 +40,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 2. npm install react-hook-form --legacy-peer-deps
 3. npm install axios --legacy-peer-deps
 4. npm install zustand --legacy-peer-deps
+5. npm install jwt-decode --legacy-peer-deps

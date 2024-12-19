@@ -1,13 +1,14 @@
 'use client'
 import Link from "next/link"
 import s from "./Login.module.scss"
-import { ROUTES } from "../../routes/routes"
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/routes/routes";
 
 
 interface FormData {
@@ -19,6 +20,7 @@ interface LoginProps {
 }
 
 export const Login: FC<LoginProps> = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -28,9 +30,18 @@ export const Login: FC<LoginProps> = () => {
     })
     const fetchLogin = useUserStore(state => state.fetchLogin)
 
-    const onSubmit: SubmitHandler<FormData> = (data) => {
+    const onSubmit: SubmitHandler<FormData> = async (data) => {
         console.log("On Login schicken: ", data)
-        fetchLogin(data.Email, data.Password);
+        try {
+            const result = await fetchLogin(data.Email, data.Password);
+            if (result) {
+                router.push(ROUTES.home);
+            } else {
+                console.error("Login error: Invalid login credentials");
+            }
+        } catch (error) {
+            console.error("Login error:", error);
+        }
     };
     const fields: Array<Field> = [
         {

@@ -2,21 +2,45 @@ import Link from 'next/link'
 import { Logo } from '../Logo'
 import s from './Header.module.scss'
 import { ROUTES } from '@/routes/routes'
+import { Accordion, Box, Button } from 'vibe-library'
 
 export const Header = () => {
     return (
         <>
-            <header className={s.header__container}>
-                <div className={s.header}>
+            <Box ui={{
+                py: 10, // 10 * 4 = 40px
+                width: '100%'
+            }}>
+                <Box ui={{
+                    flexDirection: 'row',
+                    width: '100%',
+                    px: 30,
+                    gap: 3,
+                    md: {
+                        flexDirection: 'column',
+                        align: 'center',
+                        justify: 'center',
+                        px: 4
+                    }
+                }}>
                     <Logo />
-                    <div className={s.header__list}>
+                    <Box ui={{
+                        flexDirection: 'row',
+                        gap: 10,
+                        grow: true,
+                        align: 'center',
+                        justify: 'end',
+                        md: {
+                            gap: 3
+                        }
+                    }}>
                         <Link href={ROUTES.home} className={s.header__link}>EXERCISES</Link>
                         <Link href={ROUTES.home} className={s.header__link}>NUTRITION</Link>
                         <Link href={ROUTES.home} className={s.header__link}>ABOUT</Link>
                         <Link href={ROUTES.AUTH.login} className={s.header__link}>LOGIN</Link>
-                    </div>
-                </div>
-            </header>
+                    </Box>
+                </Box>
+            </Box>
         </>
     )
 }

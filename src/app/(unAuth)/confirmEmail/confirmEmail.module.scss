@@ -1,0 +1,14 @@
+@import "src/scss/constans.scss";
+
+.main {
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(40);
+    align-items: center;
+    margin-top: toRem(140);
+    width: 100%;
+    justify-content: center;
+    & h1 {
+        font-size: toRem(36);
+    }
+}

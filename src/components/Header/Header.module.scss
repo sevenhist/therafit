@@ -10,7 +10,7 @@
     width: 100%;
     &__list {
         display: flex;
-        column-gap: toRem(50);
+        column-gap: toRem(10);
     }
     &__link {
         color: $greyTextColor;
