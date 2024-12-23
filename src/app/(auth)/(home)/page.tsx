@@ -11,6 +11,7 @@ export default function Home() {
   const user = useUserStore(state => state.user)
   const logout = useUserStore(store => store.logout)
   const router = useRouter();
+  const getAllUser = useUserStore(store => store.fetchGetAllUsers);
 
 
   return (
@@ -22,6 +23,9 @@ export default function Home() {
         <Button onClick={() => {
           logout(router.push)
         }}>Abmelden</Button>
+        <Button onClick={() => {
+          getAllUser()
+        }}>Get all users</Button>
       </div>
     </div>
   )
