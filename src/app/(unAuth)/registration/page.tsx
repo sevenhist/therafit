@@ -1,3 +1,4 @@
+'use client'
 import { Registration } from "./Registration";
 
 export default function Page() {

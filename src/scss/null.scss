@@ -29,6 +29,8 @@ body {
 	font-family: $fontFamily;
 	font-size: $fontSize;
 	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
 	//text-rendering: optimizeLegibility;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;

@@ -1,26 +1,32 @@
-@import "../../scss/constans.scss";
+@import "src/scss/constans.scss";
 
-.login__form {
+.registration__form {
     display: flex;
     flex-direction: column;
     row-gap: toRem(20);
-    padding-bottom: toRem(10);
 }
 .toast {
     width: toRem(100);
     height: toRem(40);
 }
-.login {
+.registration {
     display: flex;
     align-items: center;
+    //background-color: #f8fafb;
     background-color: #000;
     color: #fff;
     flex: 1 1 auto;
     flex-direction: column;
     width: 100%;
-    row-gap: toRem(20);
-    height: 100%;
+    height: 100%;       
     padding-bottom: toRem(50);
+    &__title {
+        font-size: toRem(32);
+        font-weight: 600;
+        display: flex;
+        justify-content: left;
+        padding: toRem(20) 0;
+    }
     &__button {
         border-radius: toRem(12);
         max-width: 459;
@@ -36,21 +42,14 @@
             background-color: $greyColorHover !important;
         }
     }
-    &__title {
-        font-size: toRem(32);
-        font-weight: 600;
-        display: flex;
-        justify-content: left;
-        padding: toRem(20) 0;
-    }
     &__input {
         min-width: toRem(400);
         max-height: toRem(90);
-       & input {
-        border-radius: toRem(12);
-        min-height: toRem(50);
-        min-width: toRem(459);
-       }
+        & input {
+            border-radius: toRem(12);
+            min-height: toRem(50);
+            min-width: toRem(459);
+        }
     }
     &__footer {
         display: flex;
@@ -58,11 +57,12 @@
         &__text {
             color: $greyTextColor;
         }
-        &__registration {
+        &__login {
             border-bottom: toRem(1) solid $whiteColor;
             &:hover {
                 opacity: .8;
             }
         }
     }
+
 }

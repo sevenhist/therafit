@@ -2,12 +2,14 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import s from "./Registration.module.scss";
-import { ROUTES } from "../../routes/routes";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/routes/routes";
+
 
 // Define a type for the form data
 interface FormData {
@@ -19,6 +21,8 @@ interface FormData {
 
 
 export const Registration: FC = () => {
+    const router = useRouter()
+
     const {
         register,
         handleSubmit,
@@ -30,9 +34,18 @@ export const Registration: FC = () => {
 
     const fetchRegister = useUserStore(state => state.fetchRegistration)
 
-    const onSubmit: SubmitHandler<FormData> = (data) => {
-        fetchRegister(data.Name, data.Last_name, data.Email, data.Password)
+    const onSubmit: SubmitHandler<FormData> = async (data) => {
         //console.log("This is data", data)
+        try {
+            const result = await fetchRegister(data.Name, data.Last_name, data.Email, data.Password);
+            if (result) {
+                router.push(ROUTES.confirmEmail);
+            } else {
+                console.error("Login error: Invalid login credentials");
+            }
+        } catch(error) {
+            console.error("Registration error:", error);
+        }
     };
     const fields: Array<Field> = [
         {

@@ -1,12 +1,28 @@
-@import "../scss/constans.scss";
+@import "../../../scss/constans.scss";
+
+.content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
 .main {
     display: flex;
     align-items: center;  
-    row-gap: toRem(30);
+    row-gap: toRem(100);
     height: 100%;
     width: 100%;
     flex-direction: column;
+    &___inSystem {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(40);
+        align-items: center;
+    }
+    &__logout {
+        max-width: toRem(100);
+    }
     &__info {
         display: flex;
         flex-direction: column;
