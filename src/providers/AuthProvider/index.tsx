@@ -7,9 +7,7 @@ export const AuthProvider:FC<PropsWithChildren> = ({children}) => {
     const fetchGetUser = useUserStore(state => state.fetchGetUser);
     const isLoading = useUserStore(state => state.isLoading)
     useEffect(() => {
-        if (localStorage.getItem('accessToken')) {
-          fetchGetUser();
-        }
+        fetchGetUser();
     }, []);
     if(isLoading) {
         return <Loader />;
