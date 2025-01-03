@@ -3,7 +3,7 @@ import { API_URL } from "@/api/http";
 import AuthService from "@/api/services/AuthService";
 import { IUser } from "@/models/IUser";
 import { ROUTES } from "@/routes/routes";
-import axios from "axios";
+import { toast } from "react-toastify";
 import Error from "next/error";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
@@ -17,8 +17,8 @@ interface UserState {
     setIsLoading: (load: boolean) => void,
     setAuth: (param: boolean) => void,
     setUser: (user: IUser) => void,
-    fetchLogin: (email: string, password: string) => Promise<boolean>,
-    fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<boolean>,
+    fetchLogin: (email: string, password: string) => Promise<void>,
+    fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<void>,
     fetchGetUser: () => void,
     logout: (redirect: (url: string) => void) => void,
     fetchGetAllUsers: () => Promise<void>
@@ -57,9 +57,14 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
                 isAuth: false,
             }));
             redirect(ROUTES.AUTH.login);
+            toast("Success Logout", {
+                type: "success"
+            });
             return response;
         } catch (error: any) {
-            throw new Error(error.response?.data?.message || error.message);
+            toast(error.response?.data?.message, {
+                type: "error"
+            });
         }
     },
     fetchGetUser: () => {
@@ -68,9 +73,15 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             .then((response) => {
                 const user = response.data.data.user;
                 get().setUser(user);
+                toast("You are logged in", {
+                    type: "success"
+                });
             })
             .catch((e) => {
                 console.log(e)
+                toast(e.response?.data?.message, {
+                    type: "warning"
+                });
             })
             .finally(() => {
                 get().setIsLoading(false);
@@ -79,22 +90,31 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     fetchLogin: async (email: string, password: string) => {
         try {
             const response = await AuthService.login(email, password);
+            console.log("THIS IS RESPONSE ON LOGIN: ", response)
             const newUser = response.data.data.user;
             const token = response.data.data.token;
             localStorage.setItem('accessToken', token);
             set({ user: newUser });
-            return true;
+            toast("Success Login", {
+                type: "success"
+            });
         } catch (error: any) {
-            throw new Error(error.response?.data?.message || error.message);
+            console.log("THIS IS RESPONSE ON LOGIN: ", error)
+            toast(error.response?.data?.message, {
+                type: "error"
+            });
         }
     },
     fetchRegistration: async (name: string, last_name: string, email: string, password: string) => {
         try {
             const response = await AuthService.register(name, last_name, email, password);
-            return true;
+            toast("Success Registration", {
+                type: "success"
+            });
         } catch (error: any) {
-            console.log("ERRROR", error.message)
-            throw new Error(error.response?.data?.message || error.message);
+            toast(error.response?.data?.message || error.message, {
+                type: "error"
+            });
         }
     },
 })), { name: 'userStore', version: 1 }))

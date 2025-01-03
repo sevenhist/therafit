@@ -19,7 +19,6 @@ export default function Home() {
       <Header />
       <div className={s.main___inSystem}>
         <p>Du bist angemeldet, deine email ist {user?.email}</p>
-        {/* <Link className={s.main__link} href={ROUTES.getUsers}>get Users</Link> */}
         <Button onClick={() => {
           logout(router.push)
         }}>Abmelden</Button>
@@ -29,5 +28,4 @@ export default function Home() {
       </div>
     </div>
   )
-  // )
 }
