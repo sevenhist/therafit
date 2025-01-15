@@ -37,12 +37,8 @@ export const Registration: FC = () => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         //console.log("This is data", data)
         try {
-            const result = await fetchRegister(data.Name, data.Last_name, data.Email, data.Password);
-            if (result) {
-                router.push(ROUTES.confirmEmail);
-            } else {
-                console.error("Login error: Invalid login credentials");
-            }
+            await fetchRegister(data.Name, data.Last_name, data.Email, data.Password);
+            router.push(ROUTES.confirmEmail);
         } catch(error) {
             console.error("Registration error:", error);
         }
@@ -116,6 +112,8 @@ export const Registration: FC = () => {
                         message={field.message}
                         errors={field.errors}
                         type={field.type}
+                        watch={field.watch}
+                        validation={field.validation}
                     />
                 ))
             }

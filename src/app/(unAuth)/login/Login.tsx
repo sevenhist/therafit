@@ -33,12 +33,8 @@ export const Login: FC<LoginProps> = () => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         console.log("On Login schicken: ", data)
         try {
-            const result = await fetchLogin(data.Email, data.Password);
-            if (result) {
-                router.push(ROUTES.home);
-            } else {
-                console.error("Login error: Invalid login credentials");
-            }
+            await fetchLogin(data.Email, data.Password);
+            router.push(ROUTES.home);
         } catch (error) {
             console.error("Login error:", error);
         }
