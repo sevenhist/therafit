@@ -1,9 +1,14 @@
+import { Container } from "@/components/Container";
 import { UnAuthLayout } from "@/layouts/UnAuthLayout"
 import { FC, PropsWithChildren } from "react"
 
-const Layout: FC<PropsWithChildren> = ({children}) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <UnAuthLayout>{children}</UnAuthLayout>
+        <UnAuthLayout>
+            <Container>
+                {children}
+            </Container> 
+        </UnAuthLayout>
     )
 }
 

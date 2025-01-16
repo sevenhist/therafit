@@ -5,6 +5,8 @@ import { Header } from "@/components/Header";
 import { Button } from "vibe-library";
 import s from "./Page.module.scss"
 import { useRouter } from "next/navigation";
+import { Preview } from "@/components/Preview";
+import { Container } from "@/components/Container";
 
 export default function Home() {
 
@@ -16,8 +18,11 @@ export default function Home() {
 
   return (
     <div className={s.main}>
-      <Header />
-      <div className={s.main___inSystem}>
+      <Container>
+        <Header />
+        <Preview />
+      </Container>
+      {/* <div className={s.main___inSystem}>
         <p>Du bist angemeldet, deine email ist {user?.email}</p>
         <Button onClick={() => {
           logout(router.push)
@@ -25,7 +30,7 @@ export default function Home() {
         <Button onClick={() => {
           getAllUser()
         }}>Get all users</Button>
-      </div>
+      </div> */}
     </div>
   )
 }

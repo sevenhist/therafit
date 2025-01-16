@@ -6,11 +6,12 @@ interface ButtonProps {
     className?: string,
     onClick?: () => void,
     variables?: "fitContent",
-    type?: "button" | "submit" | "reset" | undefined
+    type?: "button" | "submit" | "reset" | undefined,
+    variant?: "primary" | "secondary"
 }
 
-export const Button: FC<ButtonProps> = ({ children, className, onClick, variables, type }) => {
+export const Button: FC<ButtonProps> = ({ children, className, onClick, variables, type, variant }) => {
     return (
-        <button type={type ? type : "button"} onClick={onClick} className={`${className ? className : ''} ${s.button} ${variables ? s[variables] : ''}`}>{children}</button>
+        <button type={type ? type : "button"} onClick={onClick} className={`${variant === "secondary" ? className=s.button__secondary : className=s.button__primary} ${className ? className : ''} ${s.button} ${variables ? s[variables] : ''}`}>{children}</button>
     )
 }

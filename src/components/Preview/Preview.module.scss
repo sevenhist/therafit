@@ -1,0 +1,64 @@
+@import "src/scss/constans.scss";
+
+.content {
+    display: flex;
+    align-items: left;  
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    padding-top: toRem(50);
+    row-gap: toRem(10);
+    @media(max-width: $mobile) {
+        align-items: center;
+    }
+
+    &__smallDesc {
+        display: flex;
+        column-gap: toRem(15);
+        align-items: center;
+        background-color: $blackTextColor;
+        border-radius: toRem(200);
+        padding: toRem(5) toRem(13) toRem(5) toRem(6);
+        width: fit-content;
+        &__new {
+            padding: toRem(8) toRem(10);
+            background-color: $accent;
+            border-radius: toRem(200);
+            p {
+                font-size: toRem(10) !important;
+                font-weight: 600;
+            }
+            @media(max-width: $mobileSmall) {
+                padding: toRem(4) toRem(6);
+            }
+        }
+        p {
+            font-size: toRem(12);
+        }
+    }
+    &__buttons {
+        display: flex;
+        column-gap: toRem(30);
+        @media(max-width: $mobile) {
+            justify-content: center;
+        }
+        @media(max-width: $mobileSmall) {
+            flex-direction: column;
+            row-gap: toRem(30);
+            align-items: center;
+        }
+    }
+    &__about {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(30);
+        @media(max-width: $mobile) {
+            text-align: center;
+        }
+    }
+    &__desc {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(30);
+    }
+}

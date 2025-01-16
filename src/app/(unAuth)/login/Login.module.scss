@@ -24,7 +24,7 @@
     &__button {
         border-radius: toRem(12);
         max-width: 459;
-        max-height: 50;
+        max-height: toRem(50);
         width: 100%;
         height: 100%;
         background-color: $greyColor !important;
