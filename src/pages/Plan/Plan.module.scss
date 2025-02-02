@@ -1,0 +1,130 @@
+@import "src/scss/constans.scss";
+
+.plan {
+    display: flex; 
+    width: 100%;
+    flex-direction: column;
+    padding-top: toRem(160);
+    height: 100%;
+    @media(max-width: $mobileSmall) {
+        padding-top: toRem(80);
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        column-gap: toRem(80);
+        min-height: toRem(400);
+        align-items: center;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute; 
+            top: -20%;
+            right: 0%;
+            transform: translateX(toRem(60)); 
+            width: 80%;
+            height: 150%;
+            background-color: $whiteColor;
+            opacity: 10%;
+            z-index: -1;
+        }
+        @media(max-width: $tablet) {
+            column-gap: toRem(30);
+        }
+        @media(max-width: $mobile) {
+            min-height: toRem(220);
+            column-gap: toRem(10);
+            &__desc {
+                font-size: toRem(18)
+            }
+            &__title {
+                font-size: toRem(32);
+
+            }
+            &::before { 
+                height: 180%;
+            }
+        }
+        @media(max-width: $mobileSmall) {
+            min-height: toRem(150);
+            &__desc {
+                font-size: toRem(14)
+            }
+            &__title {
+                font-size: toRem(28);
+
+            }
+        }
+    }
+    &__info > *:first-child {
+        flex: 1 1 40%; 
+    }
+    
+    &__info > *:last-child {
+        flex: 0 0 40%;
+    }
+    &__possibilities {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        row-gap: toRem(50);
+    }
+    &__button {
+        margin-top: auto;
+    }
+    &__pictures {
+        padding-top: toRem(80);
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(32);
+    }
+    &__first_part {
+        display: flex;
+        justify-content: space-between;
+        column-gap: toRem(320);
+        @media(max-width: $tablet) {
+            column-gap: toRem(220);
+        }
+        @media(max-width: $mobile) {
+            column-gap: toRem(80);
+        }
+        @media(max-width: $mobileSmall) {
+            column-gap: toRem(30);
+        }
+    }
+    &__first__person {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        row-gap: toRem(9);
+        &__about {
+            display: flex;
+            flex-direction: column;
+            row-gap: toRem(5);
+            @media(max-width: $mobileSmall) {
+                p {
+                    font-size: toRem(10);
+                }
+            }
+        }
+        &__img {
+            max-width: 100%; 
+            height: auto;
+        }
+    }
+    &__second_part {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(9);
+        margin-left: 25%;
+    }
+    &__first__status {
+        color: $greyTextColor;
+        font-size: toRem(14);
+    }
+    &__second__img {
+        max-width: 33%; 
+        height: auto;
+    }
+    
+}
