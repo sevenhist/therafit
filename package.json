@@ -22,7 +22,8 @@
     "scss": "^0.2.4",
     "vibe-library": "^0.0.4",
     "zustand": "^5.0.1"
->>>>>>> 460b57050ea42dd20549e13a2ff634897d8cb93c
+
+    
   },
   "devDependencies": {
     "@types/node": "^20",

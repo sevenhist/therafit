@@ -1,7 +1,91 @@
-@import "../../scss/constans.scss";
+// Footer.module.scss
+@use "sass:math";
+@import "../../scss/constans";
 
 .footer {
-    display: flex;
-    justify-content: center;
-    padding-top: toRem(100);
+    width: 100%;
+    padding: toRem(32) 0;
+    border-top: 1px solid $greyBorder;
+    margin-top: 100px;
+
+    &__container {
+        @include adaptiveValue("padding", 30, 15);
+        max-width: toRem($maxWidthContainer);
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    &__logo {
+        margin-bottom: toRem(32);
+
+        &-box {
+            width: toRem(96);
+            height: toRem(48);
+            background-color: $bgColorLite;
+            color: $whiteColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            @include adaptiveValue("font-size", 20, 16);
+        }
+    }
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: toRem(32);
+        gap: toRem(32);
+
+        @media (max-width: $mobile) {
+            flex-direction: column;
+        }
+    }
+
+    &__contact {
+        color: $greyTextColor;
+        @include adaptiveValue("font-size", 16, 14);
+    }
+
+    &__address {
+        display: flex;
+        align-items: center;
+        margin-bottom: toRem(16);
+    }
+
+
+    &__icon {
+        margin-right: toRem(8);
+        color: $bgColorLite;
+    }
+
+
+    &__nav {
+        display: flex;
+        gap: toRem(32);
+        margin-bottom: toRem(32);
+        flex-wrap: wrap;
+
+        @media (max-width: $tablet) {
+            gap: toRem(16);
+        }
+    }
+
+    &__link {
+        color: $greyTextColor;
+        text-decoration: none;
+        @include adaptiveValue("font-size", 16, 14);
+        transition: color 0.2s;
+
+        &:hover {
+            color: $whiteColor;
+        }
+    }
+
+    &__copyright {
+        color: $greyTextColor;
+        @include adaptiveValue("font-size", 14, 12);
+        text-align: right;
+    }
 }
