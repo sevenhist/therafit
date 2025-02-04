@@ -5,7 +5,6 @@ export const Footer: FC = () => {
     
     const navLinks = [
         'ABOUT US',
-        'CONTACT US',
         'PRIVACY POLICY'
     ];
 
