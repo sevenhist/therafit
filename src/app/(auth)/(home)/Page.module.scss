@@ -9,11 +9,11 @@
 
 .main {
     display: flex;
-    align-items: center;  
-    row-gap: toRem(100);
-    height: 100%;
-    width: 100%;
     flex-direction: column;
+    &__plans {
+        display: flex;
+        flex-direction: column;
+    }
     &___inSystem {
         display: flex;
         flex-direction: column;

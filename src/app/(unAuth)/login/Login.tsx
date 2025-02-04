@@ -9,6 +9,7 @@ import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/routes/routes";
+import { Footer } from "@/components/Footer";
 
 
 interface FormData {

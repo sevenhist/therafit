@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { Footer } from "@/components/Footer";
 import { UnAuthLayout } from "@/layouts/UnAuthLayout"
 import { FC, PropsWithChildren } from "react"
 

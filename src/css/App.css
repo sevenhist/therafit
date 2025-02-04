@@ -1,0 +1,166 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@supports (font-size: clamp( 1rem , 0.9649122807rem  +  0.1754385965vw , 1.125rem )) {
+  .body {
+    font-size: clamp( 1rem , 0.9649122807rem  +  0.1754385965vw , 1.125rem );
+  }
+}
+@supports not (font-size: clamp( 1rem , 0.9649122807rem  +  0.1754385965vw , 1.125rem )) {
+  .body {
+    font-size: calc(1rem + 0.125 * (100vw - 20rem) / 71.25);
+  }
+}
+.lock .body {
+  overflow: hidden;
+  touch-action: none;
+}
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wrapper > main {
+  flex: 1 1 auto;
+}
+.wrapper > * {
+  min-width: 0;
+}
+
+/*
+(i) Стили будут применяться ко 
+всем классам содержащим *__container
+Например header__container, main__container и т.д.
+Снипет (HTML): cnt
+*/
+@supports (font-size: clamp( 1rem , 0.9649122807rem  +  0.1754385965vw , 1.125rem )) {
+  .body {
+    font-size: clamp( 1rem , 0.9649122807rem  +  0.1754385965vw , 1.125rem );
+  }
+}
+@supports not (font-size: clamp( 1rem , 0.9649122807rem  +  0.1754385965vw , 1.125rem )) {
+  .body {
+    font-size: calc(1rem + 0.125 * (100vw - 20rem) / 71.25);
+  }
+}
+.lock .body {
+  overflow: hidden;
+  touch-action: none;
+}
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.wrapper > main {
+  flex: 1 1 auto;
+}
+.wrapper > * {
+  min-width: 0;
+}
+
+/*
+(i) Стили будут применяться ко 
+всем классам содержащим *__container
+Например header__container, main__container и т.д.
+Снипет (HTML): cnt
+*/
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+}
+
+body {
+  color: #fff;
+  min-height: 100vh;
+  background-color: #000;
+  line-height: 1;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea {
+  font-family: "Poppins", sans-serif;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+[data-theme=dark] .App {
+  background-color: #161616;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 0.1875rem;
+  height: 0.1875rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2597AB;
+}

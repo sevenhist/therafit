@@ -34,10 +34,9 @@ export default function Home() {
 
   return (
     <div className={s.main}>
-      <Container>
         <Header />
         <Preview />
-        <div>
+        <div className={s.main__plans}>
         {
           planArray.map((plan) => (
             <Plan 
@@ -51,8 +50,6 @@ export default function Home() {
           ))
         }
         </div>
-        <Footer />
-      </Container>
     </div>
   )
 }
