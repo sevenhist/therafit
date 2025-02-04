@@ -4,9 +4,14 @@ import s from './Header.module.scss'
 import { ROUTES } from '@/routes/routes'
 import { Accordion, Box, Button } from 'vibe-library'
 import useUserStore from '@/modules/userInformation/store'
+import { useRouter } from 'next/navigation'
+
 
 export const Header = () => {
     const user = useUserStore(store => store.user)
+    const logout = useUserStore(store => store.logout)
+    const router = useRouter();
+
     return (
         <>
             <Box ui={{
@@ -16,8 +21,7 @@ export const Header = () => {
                 <Box ui={{
                     flexDirection: 'row',
                     width: '100%',
-                    px: 30,
-                    gap: 3,
+                    gap: 10,
                     md: {
                         flexDirection: 'column',
                         align: 'center',
@@ -38,7 +42,7 @@ export const Header = () => {
                     }}>
                         <Link href={ROUTES.home} className={s.header__link}>EXERCISES</Link>
                         <Link href={ROUTES.home} className={s.header__link}>NUTRITION</Link>
-                        <Link href={ROUTES.home} className={s.header__link}>ABOUT</Link>
+                        <Link href={ROUTES.home} className={s.header__link} onClick={() => {logout(router.push)}}>LOGOUT</Link>
                         {
                             user ? (
                                 <Link href={ROUTES.home} className={s.header__link}>PROFILE</Link>

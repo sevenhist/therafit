@@ -1,0 +1,11 @@
+@import "../../scss/constans.scss";
+
+.container {
+    padding: 0 toRem(60);
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    @media(max-width: $mobileSmall) {
+        padding: 0 toRem(20);
+    }
+}

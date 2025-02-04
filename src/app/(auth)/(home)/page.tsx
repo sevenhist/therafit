@@ -1,31 +1,58 @@
 'use client'
-import useUserStore from "@/modules/userInformation/store";
-import { Suspense, useEffect } from "react";
 import { Header } from "@/components/Header";
-import { Button } from "vibe-library";
 import s from "./Page.module.scss"
-import { useRouter } from "next/navigation";
+import { Container } from "@/components/Container";
+import { Preview } from "@/pages/Preview";
+import { Plan, PlanProps } from "@/pages/Plan";
+import fitness_main_pict from "../../../assets/img/runner.svg"
+import first_fitness_pict from "../../../assets/img/workauter.svg"
+import second_fitness_pict from "../../../assets/img/trainerin.svg"
+import firstFood from "../../../assets/img/food1.svg"
+import secondFood from "../../../assets/img/food2.svg"
+import thirdFood from "../../../assets/img/food3.svg"
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
 
-  const user = useUserStore(state => state.user)
-  const logout = useUserStore(store => store.logout)
-  const router = useRouter();
-  const getAllUser = useUserStore(store => store.fetchGetAllUsers);
 
+  const planArray: Array<PlanProps> = [
+    {
+      title: "Workout Program Made For You",
+      description: "Get Your Personalized Fitness Plan Now!",
+      first_image: first_fitness_pict,
+      secondary_image: second_fitness_pict,
+      third_image: fitness_main_pict
+    },
+    {
+      title: "Nutrition Plan Made For You",
+      description: "Get Your Personalized Nutrition Plan Now!",
+      first_image: thirdFood,
+      secondary_image: secondFood,
+      third_image: firstFood
+    },
+  ]
 
   return (
     <div className={s.main}>
-      <Header />
-      <div className={s.main___inSystem}>
-        <p>Du bist angemeldet, deine email ist {user?.email}</p>
-        <Button onClick={() => {
-          logout(router.push)
-        }}>Abmelden</Button>
-        <Button onClick={() => {
-          getAllUser()
-        }}>Get all users</Button>
-      </div>
+      <Container>
+        <Header />
+        <Preview />
+        <div>
+        {
+          planArray.map((plan) => (
+            <Plan 
+              key={plan.title} 
+              title={plan.title} 
+              description={plan.description} 
+              first_image={plan.first_image}
+              secondary_image={plan.secondary_image} 
+              third_image={plan.third_image}
+            />
+          ))
+        }
+        </div>
+        <Footer />
+      </Container>
     </div>
   )
 }

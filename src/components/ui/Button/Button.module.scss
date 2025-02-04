@@ -5,13 +5,30 @@
     align-items: center;
     justify-content: center;
     column-gap: toRem(12);
-    background-color: $accent;
+    cursor: pointer;
+    &__primary {
+        background-color: $accent;
+    }
+    &__secondary {
+        background-color: $blackTextColor;
+        &:hover {
+            background-color: $greyColor !important;
+        }
+    }
     color: $whiteColor;
-    padding: toRem(13);
+    padding: toRem(24) toRem(43);
+    font-size: toRem(18);
     text-align: center;
     transition: all .2s ease;
-    min-width: toRem(240);
-    cursor: pointer;
+    min-width: toRem(200);
+    border-radius: toRem(10);
+    font-weight: 600;
+    @media(max-width: $mobileSmall) {
+        font-size: toRem(14);
+        min-width: toRem(180);
+        width: auto;
+        max-width: toRem(200);
+    }
     &:hover {
         background-color: $accentHover;
     }

@@ -1,0 +1,53 @@
+@import "src/scss/constans.scss";
+
+.h1 {
+    font-size: toRem(200);
+    font-weight: 600;
+    @media(max-width: $tablet) {
+        font-size: toRem(140);
+    }
+    @media(max-width: $mobile) {
+        font-size: toRem(100);
+    }
+    @media(max-width: $mobileSmall) {
+        font-size: toRem(70);
+    }
+}
+
+.h2 {
+    font-size: toRem(100);
+    font-weight: 600;
+    @media(max-width: $tablet) {
+        font-size: toRem(80);
+    }
+    @media(max-width: $mobile) {
+        font-size: toRem(60);
+    }
+    @media(max-width: $mobileSmall) {
+        font-size: toRem(40);
+    }
+}
+
+.h4 {
+    text-wrap: wrap;
+    font-size: toRem(36);
+    font-weight: 400;
+    opacity: 70%;
+}
+
+.body {
+    font-size: toRem(16);
+    color: $whiteColor;
+    opacity: 50%;
+    text-wrap: wrap;
+    line-height: toRem(29);
+    letter-spacing: toRem(0.5);
+    @media(max-width: $mobile) {
+        font-size: toRem(12);
+        line-height: toRem(16);
+    }
+    @media(max-width: $mobileSmall) {
+        font-size: toRem(10);
+        line-height: toRem(14);
+    }
+}
