@@ -3,9 +3,9 @@ import s from "./Impressum.module.scss";
 export const Impressum = () => {
     return (
             <div className={s.impressum}>
-                <h1>Impressum</h1>
+                <h1>Legal Notice</h1>
                 
-                <h2>Adresse:</h2>
+                <h2>Address</h2>
                 <p>Ibererstraße 15 – 21</p>
                 <p>8051 Graz</p>
                 
@@ -15,11 +15,11 @@ export const Impressum = () => {
                 <h2>Telefon:</h2>
                 <p>+43 50 248 066-0</p>
 
-                <h2>Geschäftsführung:</h2>
-                <p>Alexander Leitner und Dmytro Rudnenko</p>
+                <h2>Management:</h2>
+                <p>Alexander Leitner and Dmytro Rudnenko</p>
 
-                <p>Diese Website ist ein Open-Source-Projekt.</p>
-                <p>Alle Inhalte stehen kostenlos zur Verfügung.</p>
+                <p>This website is an open source project.</p>
+                <p>All content is available free of charge.</p>
             </div>
         
     );
