@@ -19,7 +19,7 @@ export const Footer: FC = () => {
                     <div className={s.footer__contact}>
                         <div className={s.footer__address}>
                             <i className={s.footer__icon}>📍</i>
-                            15-21 Ibererstrasse • Graz, ST, 8051
+                            15-21 Ibererstrasse • Graz, 8051
                         </div>
                         <div className={s.footer__contacts}>
                             <span>
