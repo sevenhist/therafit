@@ -1,11 +1,11 @@
 'use client'
 import { Container } from "@/components/Container"
-import { Impressum } from "."
+import { LegalNotice } from "."
 
 export default function Page() {
     return (
         <Container>
-            <Impressum />
+            <LegalNotice />
         </Container>
     )
 }
