@@ -1,11 +1,23 @@
 import { FC } from "react"
 import s from "./Footer.module.scss"
+import { ROUTES } from "@/routes/routes";
+import Link from "next/link";
 
 export const Footer: FC = () => {
     
     const navLinks = [
-        'ABOUT US',
-        'PRIVACY POLICY'
+        {
+            title: "ABOUT US",
+            link: ROUTES.about
+        }, 
+        {
+            title: "PRIVACY POLICY",
+            link: ROUTES.privacy_policy
+        }, 
+        {
+            title: "LEGAL NOTICE",
+            link: ROUTES.legal_notice
+        }
     ];
 
     return (
@@ -32,9 +44,9 @@ export const Footer: FC = () => {
 
                 <nav className={s.footer__nav}>
                     {navLinks.map((link) => (
-                        <a key={link} href="#" className={s.footer__link}>
-                            {link}
-                        </a>
+                        <Link key={link.link} href={link.link} className={s.footer__link}>
+                            {link.title}
+                        </Link>
                     ))}
                 </nav>
 
