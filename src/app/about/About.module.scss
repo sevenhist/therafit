@@ -1,1 +1,93 @@
 @import "src/scss/constans.scss";
+
+.aboutContainer {
+  max-width: toRem($maxWidthContainer);
+  margin: 0 auto;
+  padding: toRem($containerPadding);
+  font-family: $fontFamily;
+  color: $blackTextColor;
+
+
+  .header {
+    text-align: center;
+    h1 {
+      font-size: toRem(32);
+      font-weight: 700;
+      color: $accent;
+    }
+    p {
+      font-size: toRem(18);
+      font-weight: $fontWeight;
+      color: $greyTextColor;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(20);
+    padding: toRem(20);
+
+    .contentBox {
+      background: $greyBackground;
+      padding: toRem(20);
+      border-radius: toRem(10);
+      box-shadow: 0 toRem(4) toRem(10) rgba(0, 0, 0, 0.1);
+
+      h2 {
+        font-size: toRem(24);
+        color: $accentHover;
+      }
+
+      .valuesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(toRem(250), 1fr));
+        gap: toRem(20);
+
+        .valueItem {
+          background: $whiteColor;
+          padding: toRem(15);
+          border-radius: toRem(8);
+          box-shadow: 0 toRem(2) toRem(6) rgba(0, 0, 0, 0.05);
+
+          h3 {
+            font-size: toRem(20);
+            color: $bgColorLite;
+          }
+
+          p {
+            font-size: toRem(16);
+            color: $greyTextColor;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $tablet) {
+    .header h1 {
+      font-size: toRem(28);
+    }
+    .header p {
+      font-size: toRem(16);
+    }
+    .contentBox {
+      padding: toRem(15);
+    }
+  }
+
+  @media (max-width: $mobile) {
+    .header h1 {
+      font-size: toRem(24);
+    }
+    .header p {
+      font-size: toRem(14);
+    }
+    .content {
+      padding: toRem(10);
+    }
+    .contentBox {
+      padding: toRem(10);
+    }
+  }
+}
