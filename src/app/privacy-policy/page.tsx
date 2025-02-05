@@ -1,8 +1,11 @@
 'use client'
+import { Container } from "@/components/Container"
 import { PrivacyPolicy } from "."
 
 export default function Page() {
     return (
-        <PrivacyPolicy />
+        <Container>
+            <PrivacyPolicy />
+        </Container>
     )
 }
