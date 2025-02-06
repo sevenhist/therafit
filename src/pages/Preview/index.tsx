@@ -4,7 +4,7 @@ import s from "./Preview.module.scss"
 import { Typography } from "@/components/Typography"
 import { FC } from "react"
 
-export const Preview: FC = () => {
+const Preview: FC = () => {
     return (
         <div className={s.content}>
             <div className={s.content__smallDesc}>
@@ -24,3 +24,5 @@ export const Preview: FC = () => {
         </div>
     )
 }
+
+export default Preview;

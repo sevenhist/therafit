@@ -1,3 +1,4 @@
+'use client'
 import { FC } from "react"
 import s from "./Plan.module.scss"
 import { Typography } from "@/components/Typography"
@@ -12,7 +13,7 @@ export interface PlanProps {
     third_image: string | StaticImageData
 }
 
-export const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image, third_image }) => {
+const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image, third_image }) => {
     return (
         <div className={s.plan}>
             <div className={s.plan__info}>
@@ -70,3 +71,5 @@ export const Plan: FC<PlanProps> = ({ title, description, first_image, secondary
         </div>
     )
 }
+
+export default Plan;
