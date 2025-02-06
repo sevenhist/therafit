@@ -6,19 +6,35 @@
   padding: toRem($containerPadding);
   font-family: $fontFamily;
   color: $blackTextColor;
-
+  display: flex;
+  flex-direction: column;
+  row-gap: toRem(40);
+  margin-top: toRem(40);
+  @media (max-width: $mobileSmall) {
+    margin-top: toRem(20);
+    padding: toRem(10);
+  }
 
   .header {
-    text-align: center;
-    h1 {
-      font-size: toRem(32);
-      font-weight: 700;
-      color: $accent;
+    h2 {
+      font-size: toRem(100);
+      color: $whiteColor;
     }
+    @media (max-width: $mobileSmall) {
+      h2 {
+        font-size: toRem(60);
+      }
+      row-gap: toRem(20);
+    }
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(60);
     p {
-      font-size: toRem(18);
       font-weight: $fontWeight;
-      color: $greyTextColor;
+      color: $whiteColor;
+      line-height: toRem(24);
     }
   }
 
@@ -26,17 +42,30 @@
     display: flex;
     flex-direction: column;
     gap: toRem(20);
-    padding: toRem(20);
 
     .contentBox {
       background: $greyBackground;
       padding: toRem(20);
       border-radius: toRem(10);
       box-shadow: 0 toRem(4) toRem(10) rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      row-gap: toRem(20);
+
+      &__about {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(10);
+      }
 
       h2 {
         font-size: toRem(24);
         color: $accentHover;
+        text-align: center;
+      }
+      p {
+        line-height: toRem(22);
+        
       }
 
       .valuesGrid {
@@ -45,6 +74,9 @@
         gap: toRem(20);
 
         .valueItem {
+          display: flex;
+          flex-direction: column;
+          row-gap: toRem(10);
           background: $whiteColor;
           padding: toRem(15);
           border-radius: toRem(8);
@@ -52,12 +84,14 @@
 
           h3 {
             font-size: toRem(20);
-            color: $bgColorLite;
+            color: $accent;
+            text-align: center;
           }
 
           p {
             font-size: toRem(16);
             color: $greyTextColor;
+            line-height: toRem(22);
           }
         }
       }
@@ -89,5 +123,80 @@
     .contentBox {
       padding: toRem(10);
     }
+  }
+  @media (max-width: $mobileSmall) {
+    .content {
+      padding: toRem(0);
+    }
+    .contentBox {
+      padding: toRem(10);
+    }
+  }
+}
+
+.teamSection {
+  display: flex;
+  flex-direction: column;
+  row-gap: toRem(30);
+  color: $whiteColor;
+  &__about {
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(20);
+    text-align: center;
+    &__title {
+      font-size: toRem(40);
+    }
+    p {
+      font-size: toRem(20);
+      padding: 0px toRem(140);
+      line-height: toRem(24);
+    }
+    @media(max-width: $mobile) {
+      p {
+        padding: 0px toRem(40);
+        font-size: toRem(14);
+        line-height: toRem(18);
+      }
+    }
+  }
+  &__team {
+    display: flex;
+    justify-content: center;
+    gap: toRem(20);
+    @media(max-width: $mobile) {
+      flex-wrap: wrap;
+      row-gap: toRem(40);
+    }
+  }
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: toRem(20);
+    &__info {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      row-gap: toRem(8);
+      h3 {
+        color: $accent;
+      }
+    } 
+    &__role {
+      font-size: toRem(20);   
+    }
+    &__description {
+      font-size: toRem(14);
+      line-height: toRem(16);
+      @media(max-width: $mobile) {
+        padding: 0 toRem(20);
+      }
+    }
+  }
+  &__picture {
+    width: toRem(160);
+    height: toRem(240);
+    border-radius: toRem(10);
   }
 }

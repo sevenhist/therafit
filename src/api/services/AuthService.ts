@@ -7,7 +7,7 @@ import { IUser } from "@/models/IUser";
 
 export default class AuthService {
     static async login(email: string, password: string): Promise<AxiosResponse<AxiosResponse<AuthResponse>>> {
-        return $api.post('/auth/login', {email, password});
+        return $api.post('/auth/login', {email, password}); //endpoint
     }
     static async logout(): Promise<void> {
         return $api.post('/auth/logout');
