@@ -4,6 +4,7 @@
     & h2 {
         font-size: toRem(18);
         font-weight: 800;
+        color: $whiteColor;
     }
     &:hover {
         cursor: pointer;

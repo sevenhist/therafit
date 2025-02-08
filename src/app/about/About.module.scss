@@ -1,5 +1,11 @@
 @import "src/scss/constans.scss";
 
+.about {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
 .aboutContainer {
   max-width: toRem($maxWidthContainer);
   margin: 0 auto;
@@ -9,15 +15,13 @@
   display: flex;
   flex-direction: column;
   row-gap: toRem(40);
-  margin-top: toRem(40);
   @media (max-width: $mobileSmall) {
-    margin-top: toRem(20);
     padding: toRem(10);
   }
 
   .header {
     h2 {
-      font-size: toRem(100);
+      font-size: toRem(70);
       color: $whiteColor;
     }
     @media (max-width: $mobileSmall) {
@@ -30,7 +34,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    row-gap: toRem(60);
+    row-gap: toRem(20);
     p {
       font-weight: $fontWeight;
       color: $whiteColor;
@@ -44,13 +48,14 @@
     gap: toRem(20);
 
     .contentBox {
-      background: $greyBackground;
+      background: $blackColor;
       padding: toRem(20);
       border-radius: toRem(10);
       box-shadow: 0 toRem(4) toRem(10) rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
       row-gap: toRem(20);
+      text-align: center;
 
       &__about {
         display: flex;
@@ -60,12 +65,12 @@
 
       h2 {
         font-size: toRem(24);
-        color: $accentHover;
+        color: $accent;
         text-align: center;
       }
       p {
         line-height: toRem(22);
-        
+        color: $whiteColor;
       }
 
       .valuesGrid {
@@ -77,7 +82,7 @@
           display: flex;
           flex-direction: column;
           row-gap: toRem(10);
-          background: $whiteColor;
+          background: $blackTextColor;
           padding: toRem(15);
           border-radius: toRem(8);
           box-shadow: 0 toRem(2) toRem(6) rgba(0, 0, 0, 0.05);
@@ -90,7 +95,7 @@
 
           p {
             font-size: toRem(16);
-            color: $greyTextColor;
+            color: $whiteColor;
             line-height: toRem(22);
           }
         }

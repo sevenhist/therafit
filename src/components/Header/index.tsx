@@ -21,7 +21,7 @@ export const Header = () => {
                 <Box ui={{
                     flexDirection: 'row',
                     width: '100%',
-                    gap: 10,
+                    gap: 6,
                     md: {
                         flexDirection: 'column',
                         align: 'center',

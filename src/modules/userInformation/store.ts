@@ -76,12 +76,12 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
                 toast("You are logged in", {
                     type: "success"
                 });
-            })
+            }) // then wird nur dannn funktioniert wenn keine fehler war, sondern wenn status code 200, 201, 202 erfolgreich ist
             .catch((e) => {
                 console.log(e)
                 toast(e.response?.data?.message, {
                     type: "warning"
-                });
+                }); // wenn fehler in user gibt dann wird user nicht geändert sondern user: null
             })
             .finally(() => {
                 get().setIsLoading(false);

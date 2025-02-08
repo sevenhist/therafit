@@ -9,6 +9,6 @@ export interface TypographyProps {
 
 export const Typography: FC<TypographyProps> = ({children, variant, className}) => {
     return (
-        <p className={`${s[variant]} ${className ? className : ''} `}>{children}</p>
+        <p className={`${className ? className : ''} ${s[variant]} `}>{children}</p>
     )
 }

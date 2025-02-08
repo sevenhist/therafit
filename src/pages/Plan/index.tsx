@@ -25,9 +25,6 @@ const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image,
                     </div>
                 </div>
             </div>
-            {/* {
-                title === "Workout Program Made For You" &&
-                ( */}
             <div className={s.plan__pictures}>
                 <div className={s.plan__first_part}>
                     <div className={s.plan__first__person}>
@@ -65,8 +62,6 @@ const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image,
                     }
                 </div>
             </div>
-            {/* )
-            } */}
 
         </div>
     )

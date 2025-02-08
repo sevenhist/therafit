@@ -24,7 +24,8 @@
         font-size: toRem(60);
     }
     @media(max-width: $mobileSmall) {
-        font-size: toRem(40);
+        font-size: toRem(32);
+        line-height: toRem(36);
     }
 }
 
@@ -33,6 +34,9 @@
     font-size: toRem(36);
     font-weight: 400;
     opacity: 70%;
+    @media(max-width: $mobileSmall) {
+        font-size: toRem(18);
+    }
 }
 
 .body {
