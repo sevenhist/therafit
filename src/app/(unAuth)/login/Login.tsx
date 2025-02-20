@@ -10,6 +10,8 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/routes/routes";
 import { Footer } from "@/components/Footer";
+import Image from "next/image";
+import background from "../../../assets/img/Group.png"
 
 
 interface FormData {
@@ -17,7 +19,7 @@ interface FormData {
     Password: string
 }
 interface LoginProps {
-    
+
 }
 
 export const Login: FC<LoginProps> = () => {
@@ -67,11 +69,19 @@ export const Login: FC<LoginProps> = () => {
     return (
         <div className={s.login}>
             <Header />
+            <div className={s.login__background}>
+                <Image
+                    className={s.login__background__img}
+                    src={background}
+                    alt="image"
+                    priority
+                />
+            </div>
             <form onSubmit={handleSubmit(onSubmit)} className={s.login__form}>
-            <h1 className={s.login__title}>Sign in</h1>
+                <h1 className={s.login__title}>Sign in</h1>
                 {
                     fields.map((field, key) => (
-                        <FieldBox 
+                        <FieldBox
                             className={s.login__input}
                             key={key}
                             title={field.title}

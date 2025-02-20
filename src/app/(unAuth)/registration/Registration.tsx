@@ -9,7 +9,9 @@ import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/routes/routes";
-import { Footer } from "@/components/Footer";
+import Image from "next/image";
+import background from "../../../assets/img/Group.png"
+
 
 
 // Define a type for the form data
@@ -98,6 +100,14 @@ export const Registration: FC = () => {
     return (
     <div className={s.registration}>
         <Header />
+        <div className={s.registration__background}>
+                <Image
+                    className={s.registration__background__img}
+                    src={background}
+                    alt="image"
+                    priority
+                />
+            </div>
         <form onSubmit={handleSubmit(onSubmit)} className={s.registration__form}>
         <h1 className={s.registration__title}>Sign up</h1>
             {

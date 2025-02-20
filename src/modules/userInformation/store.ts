@@ -16,7 +16,7 @@ interface UserState {
     isLoading: boolean,
     setIsLoading: (load: boolean) => void,
     setAuth: (param: boolean) => void,
-    setUser: (user: IUser) => void,
+    setUser: (user: IUser | null) => void,
     fetchLogin: (email: string, password: string) => Promise<void>,
     fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<void>,
     fetchGetUser: () => void,
@@ -31,7 +31,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     setAuth: (action: boolean) => set(() => ({
         isAuth: action,
     })),
-    setUser: (user: IUser) => set(() => ({
+    setUser: (user: IUser | null) => set(() => ({
         user: user,
     })),
     setIsLoading: (load: boolean) => set(() => ({
@@ -79,6 +79,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             }) // then wird nur dannn funktioniert wenn keine fehler war, sondern wenn status code 200, 201, 202 erfolgreich ist
             .catch((e) => {
                 console.log(e)
+                get().setUser(null)
                 toast(e.response?.data?.message, {
                     type: "warning"
                 }); // wenn fehler in user gibt dann wird user nicht geändert sondern user: null

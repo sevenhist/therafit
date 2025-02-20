@@ -1,12 +1,12 @@
 @import "src/scss/constans.scss";
 
-.registration__form {
+.excerciseGeneration__form {
     display: flex;
     flex-direction: column;
     row-gap: toRem(20);
     padding-bottom: toRem(10);
-    z-index: 2; 
     position: relative;
+    z-index: 2;
     justify-content: center;
     height: 100%;
     @media (max-width: $mobileSmall) {
@@ -17,33 +17,24 @@
     width: toRem(100);
     height: toRem(40);
 }
-.registration {
+.excerciseGeneration {
     display: flex;
     align-items: center;
-    //background-color: #f8fafb;
     background-color: #000;
     color: #fff;
     flex: 1 1 auto;
     flex-direction: column;
-    width: 100%;     
-
+    width: 100%;
     row-gap: toRem(20);
     height: 100%;
     min-height: toRem(600);
     @media(max-width: $mobile) {
         min-height: toRem(800);
     }
-    &__title {
-        font-size: toRem(32);
-        font-weight: 600;
-        display: flex;
-        justify-content: center;
-        padding: toRem(20) 0;
-    }
     &__button {
         border-radius: toRem(12);
         max-width: 459;
-        max-height: 50;
+        max-height: toRem(50);
         width: 100%;
         height: 100%;
         background-color: $greyColor !important;
@@ -55,6 +46,13 @@
             background-color: $greyColorHover !important;
         }
     }
+    &__title {
+        font-size: toRem(32);
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        padding: toRem(20) 0;
+    }
     &__input {
         min-width: toRem(400);
         max-height: toRem(90);
@@ -64,12 +62,12 @@
         & input {
             border-radius: toRem(12);
             min-height: toRem(50);
-            width: 100%; 
-            max-width: toRem(459); 
-    
+            width: 100%;
+            max-width: toRem(459);
+
             @media (max-width: $mobileSmall) {
-                width: 70%; 
-                max-width: unset; 
+                width: 70%;
+                max-width: unset;
             }
         }
     }
@@ -80,10 +78,10 @@
         &__text {
             color: $greyTextColor;
         }
-        &__login {
+        &__registration {
             border-bottom: toRem(1) solid $whiteColor;
             &:hover {
-                opacity: .8;
+                opacity: 0.8;
             }
         }
     }
@@ -97,11 +95,6 @@
         width: 50%;
         transform: translate(-50%, -50%); 
         overflow: hidden;
-        min-height: toRem(600);
-        padding-top: toRem(50);
-        @media(max-width: $mobile) {
-            min-height: toRem(800);
-        }
         @media(max-width: toRem(1900)) {
             top: 40%;
         }
@@ -132,5 +125,5 @@
             }
         }
     }
-
+    
 }
