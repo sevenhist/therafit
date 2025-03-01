@@ -40,7 +40,7 @@ export const Header = () => {
                             gap: 3
                         }
                     }}>
-                        <Link href={ROUTES.home} className={s.header__link}>EXERCISES</Link>
+                        <Link href={ROUTES.excercise_generation} className={s.header__link}>EXERCISES</Link>
                         <Link href={ROUTES.home} className={s.header__link}>NUTRITION</Link>
                         <Link href={ROUTES.home} className={s.header__link} onClick={() => {logout(router.push)}}>LOGOUT</Link>
                         {

@@ -27,7 +27,7 @@ export const ExcerciseGeneration = () => {
     } = useForm<FormData>({
         mode: 'all'
     })
-    
+
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         console.log("On Training Plan schicken: ", data)
@@ -41,30 +41,30 @@ export const ExcerciseGeneration = () => {
     const fields: Array<Field> = [
         {
             register: register,
-            name: 'Birth_date',
+            name: 'age',
             required: "This field is required!",
-            patternValue: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/,
-            message: 'Please enter a valid date (YYYY-MM-DD)!',
+            patternValue:  /^(1[6-9]|[2-5][0-9]|60)$/,
+            message: 'Please enter a valid age (16-60)',
             errors: errors,
-            title: 'Birth date',
-            type: 'text',
+            title: 'Age',
+            type: 'number',
         },
         {
             register: register,
             name: 'CurrentWeight',
             required: "This field is required!",
-            patternValue: /^\d+$/,
-            message: 'Please enter a valid number',
+            patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
+            message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
             title: 'Current weight',
-            type: 'number'
+            type: 'number'            
         },
         {
             register: register,
             name: 'TargetWeight',
             required: "This field is required!",
-            patternValue: /^\d+$/,
-            message: 'Please enter a valid number',
+            patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
+            message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
             title: 'Target weight',
             type: 'number',
@@ -83,8 +83,8 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'Height',
             required: "This field is required!",
-            patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|300)$/, 
-            message: 'Please enter a valid height (from 40 to 300 cm)',
+            patternValue: /^(?:1[4-9][0-9]|2[0-9]{2}|300)$/,
+            message: 'Please enter a valid height (from 140 to 300 cm)',
             errors: errors,
             title: 'Height',
             type: 'number'
