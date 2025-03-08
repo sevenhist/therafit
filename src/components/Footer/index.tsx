@@ -24,7 +24,7 @@ export const Footer: FC = () => {
         <footer className={s.footer}>
             <div className={s.footer__container}>
                 <div className={s.footer__logo}>
-                    <div className={s.footer__logo_box}>FitData</div>
+                    <div className={s.footer__logo_box}>TheraFit</div>
                 </div>
 
                 <div className={s.footer__info}>
@@ -51,7 +51,7 @@ export const Footer: FC = () => {
                 </nav>
 
                 <div className={s.footer__copyright}>
-                    Copyright © 2025 • FitData
+                    Copyright © 2025 • TheraFit
                 </div>
             </div>
         </footer>

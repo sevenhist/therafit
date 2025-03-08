@@ -47,7 +47,7 @@ export const ExcerciseGeneration = () => {
         {
             register: register,
             name: 'Age',
-            required: "Invalid Input! Please enter a numeric value",
+            required: "Invalid Input! Please enter a numeric value.",
             patternValue:  /^(1[6-9]|[2-5][0-9]|60)$/,
             message: 'Please enter a valid age (16-60)',
             errors: errors,
@@ -57,7 +57,7 @@ export const ExcerciseGeneration = () => {
         {
             register: register,
             name: 'CurrentWeight',
-            required: "This field is required!",
+            required: "Invalid Input! Please enter a numeric value.",
             patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
             message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
@@ -67,7 +67,7 @@ export const ExcerciseGeneration = () => {
         {
             register: register,
             name: 'TargetWeight',
-            required: "This field is required!",
+            required: "Invalid Input! Please enter a numeric value.",
             patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
             message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
@@ -79,7 +79,7 @@ export const ExcerciseGeneration = () => {
             name: 'Gender',
             required: "Invalid Input! Please enter a text value",
             patternValue: /^(male|female|diverse)$/i,
-            message: 'Please select a valid gender (male, female or diverse)',
+            message: 'Please write a valid gender (male, female or diverse)',
             errors: errors,
             title: 'Gender',
             type: 'text'
@@ -87,9 +87,9 @@ export const ExcerciseGeneration = () => {
         {
             register: register,
             name: 'Height',
-            required: "This field is required!",
-            patternValue: /^(?:1[4-9][0-9]|2[0-9]{2}|300)$/,
-            message: 'Please enter a valid height (from 140 to 300 cm)',
+            required: "Invalid Input! Please enter a numeric value.",
+            patternValue: /^(?:1[0-9][0-9]|2[0-9]{2}|300)$/,
+            message: 'Please enter a valid height (from 100 to 300 cm)',
             errors: errors,
             title: 'Height',
             type: 'number'
@@ -97,7 +97,7 @@ export const ExcerciseGeneration = () => {
         {
             register: register,
             name: 'TimesPerWeek',
-            required: "This field is required!",
+            required: "Invalid Input! Please enter a numeric value.",
             patternValue: /^[1-7]$/, 
             message: 'Please enter a valid number (from 1 to 7)',
             errors: errors,

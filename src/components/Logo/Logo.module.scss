@@ -1,6 +1,11 @@
 @import "../../scss/constans.scss";
 
 .logo {
+    & img {
+        width: toRem(170);
+        height: toRem(70);
+    }
+
     & h2 {
         font-size: toRem(18);
         font-weight: 800;

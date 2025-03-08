@@ -27,7 +27,19 @@ export interface FieldArray {
 }
 
 export const FieldBox: FC<Field> = (props) => {
+    useEffect(() => {
+        const preventScroll = (event: WheelEvent) => {
+            if (document.activeElement instanceof HTMLInputElement && document.activeElement.type === "number") {
+                event.preventDefault();
+            }
+        };
 
+        document.addEventListener("wheel", preventScroll, { passive: false });
+
+        return () => {
+            document.removeEventListener("wheel", preventScroll);
+        };
+    }, []);
     return (
         <div className={`${props.className ? props.className : ''} ${s.fieldbox}`}>
             <p className={`${props.errors[props.name] ? s.red__title : s.normal__title}`}>{props.title}</p>

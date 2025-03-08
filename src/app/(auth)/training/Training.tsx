@@ -24,31 +24,42 @@ export const Training = () => {
             <Header />
             {
                 isLoader ? (
-                    <Loader />
+                    <div className={s.loader}>
+                        <h3>Please wait, your training plan is being generated.</h3>
+                        <Loader />
+                    </div>
                 ) :
                     <div>
-                        <p>Name: {trainingsPlan?.trainingPlan.name}</p>
-                        <p>Times Per Week: {trainingsPlan?.trainingPlan.times_per_week}</p>
                         {
-                            trainingsPlan?.trainingPlan.trainings.map((value: TrainingsResponse) =>
-                                <div className={s.trainingsPlan}>
-                                    <p>Name of training: {value.name}</p>
+                            trainingsPlan ?
+                                <div>
+                                    <p>Name: {trainingsPlan?.trainingPlan.name}</p>
+                                    <p>Times Per Week: {trainingsPlan?.trainingPlan.times_per_week}</p>
+                                    {
+                                        trainingsPlan?.trainingPlan.trainings.map((value: TrainingsResponse) =>
+                                            <div className={s.trainingsPlan}>
+                                                <p>Name of training: {value.name}</p>
 
-                                    {value.exercises.map((excersise: ExcersisesResponse) =>
-                                        <div className={s.excersise}>
-                                            <p>Name of excersise: {excersise.name}</p>
-                                            <p>Category of excersise: {excersise.category}</p>
-                                            <p>Description of excersise: {excersise.description}</p>
-                                            <p>Level of excersise: {excersise.level}</p>
-                                            <p>How many repetitions of excersise: {excersise.repetitions}</p>
-                                            <p>How many sets of excersise: {excersise.sets}</p>
-                                        </div>
-                                    )}
+                                                {value.exercises.map((excersise: ExcersisesResponse) =>
+                                                    <div className={s.excersise}>
+                                                        <p>Name of excersise: {excersise.name}</p>
+                                                        <p>Category of excersise: {excersise.category}</p>
+                                                        <p>Description of excersise: {excersise.description}</p>
+                                                        <p>Level of excersise: {excersise.level}</p>
+                                                        <p>How many repetitions of excersise: {excersise.repetitions}</p>
+                                                        <p>How many sets of excersise: {excersise.sets}</p>
+                                                    </div>
+                                                )}
 
-                                </div>
-                            )
+                                            </div>
+                                        )
+                                    }
+                                    <Button onClick={() => onDeleteTrainingsPlan()}>Delete Training Plan</Button>
+                                </div> 
+                                :
+                                <p className={s.no_training}>You don’t have a training plan yet.</p>
                         }
-                        <Button onClick={() => onDeleteTrainingsPlan()}>Delete Training Plan</Button>
+
                     </div>
             }
         </div>
