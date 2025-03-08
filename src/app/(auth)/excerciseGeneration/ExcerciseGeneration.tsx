@@ -8,18 +8,23 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import background from "../../../assets/img/Group.png"
+import useTrainingsPlanStore from "@/modules/trainingsPlan/store";
+import { Loader } from "vibe-library";
+import { ROUTES } from "@/routes/routes";
 
 
 interface FormData {
-    Birth_date: string,
+    Age: number,
     CurrentWeight: number,
     TargetWeight: number,
     Gender: string,
-    Height: number
+    Height: number,
+    TimesPerWeek: number
 }
 
 export const ExcerciseGeneration = () => {
     const router = useRouter();
+    const getTrainingsPlan = useTrainingsPlanStore(store => store.getTrainingsPlan)
     const {
         register,
         handleSubmit,
@@ -31,18 +36,18 @@ export const ExcerciseGeneration = () => {
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         console.log("On Training Plan schicken: ", data)
-        // try {
-        //     await fetchLogin(data.Email, data.Password);
-        //     router.push(ROUTES.home);
-        // } catch (error) {
-        //     console.error("Login error:", error);
-        // }
+        try {
+            await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight, data.TimesPerWeek);
+            router.push(ROUTES.AUTH.training);
+        } catch (error) {
+            console.error("Login error:", error);
+        }
     };
     const fields: Array<Field> = [
         {
             register: register,
-            name: 'age',
-            required: "This field is required!",
+            name: 'Age',
+            required: "Invalid Input! Please enter a numeric value",
             patternValue:  /^(1[6-9]|[2-5][0-9]|60)$/,
             message: 'Please enter a valid age (16-60)',
             errors: errors,
@@ -72,9 +77,9 @@ export const ExcerciseGeneration = () => {
         {
             register: register,
             name: 'Gender',
-            required: "This field is required!",
-            patternValue: /^(male|female)$/i,
-            message: 'Please select a valid gender (male or female)',
+            required: "Invalid Input! Please enter a text value",
+            patternValue: /^(male|female|diverse)$/i,
+            message: 'Please select a valid gender (male, female or diverse)',
             errors: errors,
             title: 'Gender',
             type: 'text'
@@ -88,9 +93,18 @@ export const ExcerciseGeneration = () => {
             errors: errors,
             title: 'Height',
             type: 'number'
-        }
+        },
+        {
+            register: register,
+            name: 'TimesPerWeek',
+            required: "This field is required!",
+            patternValue: /^[1-7]$/, 
+            message: 'Please enter a valid number (from 1 to 7)',
+            errors: errors,
+            title: 'Times per Week',
+            type: 'number'
+        }        
     ];
-
 
     return (
         <div className={s.excerciseGeneration}>

@@ -8,12 +8,12 @@
 .privacy_policy {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
     font-size: toRem(22);
     row-gap: toRem(16);
     margin-top: toRem(30);
-    text-align: center;
+    text-align: left;
     line-height: toRem(26);
 
     h1 {

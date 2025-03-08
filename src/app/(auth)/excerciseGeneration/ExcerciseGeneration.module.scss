@@ -27,7 +27,6 @@
     width: 100%;
     row-gap: toRem(20);
     height: 100%;
-    min-height: toRem(600);
     @media(max-width: $mobile) {
         min-height: toRem(800);
     }
@@ -54,7 +53,7 @@
         padding: toRem(20) 0;
     }
     &__input {
-        min-width: toRem(400);
+        min-width: toRem(440);
         max-height: toRem(90);
         display: flex;
         align-items: center;

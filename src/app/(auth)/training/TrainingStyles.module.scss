@@ -1,0 +1,17 @@
+@import "src/scss/constans.scss";
+
+.trainingsPlan {
+    padding: toRem(10);
+    border: toRem(1) solid $accent;
+    p {
+        padding: toRem(5);
+    }
+}
+
+.excersise {
+    padding: toRem(5);
+    border: toRem(1) solid $bgColorLite;
+    p {
+        padding: toRem(2);
+    }
+}
