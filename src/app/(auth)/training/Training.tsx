@@ -33,8 +33,8 @@ export const Training = () => {
                         {
                             trainingsPlan ?
                                 <div>
-                                    <p>Name: {trainingsPlan?.trainingPlan.name}</p>
-                                    <p>Times Per Week: {trainingsPlan?.trainingPlan.times_per_week}</p>
+                                    <p>Name: {trainingsPlan?.trainingPlan.trainingPlan.name}</p>
+                                    <p>Times Per Week: {trainingsPlan?.trainingPlan.trainingPlan.times_per_week}</p>
                                     {
                                         trainingsPlan?.trainingPlan.trainings.map((value: TrainingsResponse) =>
                                             <div className={s.trainingsPlan}>
@@ -42,10 +42,10 @@ export const Training = () => {
 
                                                 {value.exercises.map((excersise: ExcersisesResponse) =>
                                                     <div className={s.excersise}>
-                                                        <p>Name of excersise: {excersise.name}</p>
-                                                        <p>Category of excersise: {excersise.category}</p>
-                                                        <p>Description of excersise: {excersise.description}</p>
-                                                        <p>Level of excersise: {excersise.level}</p>
+                                                        <p>Name of excersise: {excersise.exercise.name}</p>
+                                                        <p>Category of excersise: {excersise.exercise.category}</p>
+                                                        <p>Description of excersise: {excersise.exercise.description}</p>
+                                                        <p>Level of excersise: {excersise.exercise.difficulty.level}</p>
                                                         <p>How many repetitions of excersise: {excersise.repetitions}</p>
                                                         <p>How many sets of excersise: {excersise.sets}</p>
                                                     </div>
