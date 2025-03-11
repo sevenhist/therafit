@@ -50,7 +50,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     logout: async (redirect) => {
         try {
             const response = await AuthService.logout();
-            console.log(response, "THIS IS ACTIVATE RESPONSE")
+            //console.log(response, "THIS IS ACTIVATE RESPONSE")
             localStorage.removeItem('accessToken');
             set(() => ({
                 user: null,
@@ -78,7 +78,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
                 });
             }) // then wird nur dannn funktioniert wenn keine fehler war, sondern wenn status code 200, 201, 202 erfolgreich ist
             .catch((e) => {
-                console.log(e)
+                //console.log(e)
                 get().setUser(null)
                 toast(e.response?.data?.message, {
                     type: "warning"
@@ -91,7 +91,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     fetchLogin: async (email: string, password: string) => {
         try {
             const response = await AuthService.login(email, password);
-            console.log("THIS IS RESPONSE ON LOGIN: ", response)
+            //console.log("THIS IS RESPONSE ON LOGIN: ", response)
             const newUser = response.data.data.user;
             const token = response.data.data.token;
             localStorage.setItem('accessToken', token);
@@ -100,7 +100,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
                 type: "success"
             });
         } catch (error: any) {
-            console.log("THIS IS RESPONSE ON LOGIN: ", error)
+            //console.log("THIS IS RESPONSE ON LOGIN: ", error)
             toast(error.response?.data?.message, {
                 type: "error"
             });
