@@ -38,7 +38,6 @@ export const Registration: FC = () => {
     const fetchRegister = useUserStore(state => state.fetchRegistration)
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        //console.log("This is data", data)
         try {
             await fetchRegister(data.Name, data.Last_name, data.Email, data.Password);
             router.push(ROUTES.confirmEmail);

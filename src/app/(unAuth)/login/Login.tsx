@@ -34,7 +34,6 @@ export const Login: FC<LoginProps> = () => {
     const fetchLogin = useUserStore(state => state.fetchLogin)
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        console.log("On Login schicken: ", data)
         try {
             await fetchLogin(data.Email, data.Password);
             router.push(ROUTES.home);
