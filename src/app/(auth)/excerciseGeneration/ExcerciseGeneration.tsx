@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import background from "../../../assets/img/Group.png"
 import useTrainingsPlanStore from "@/modules/trainingsPlan/store";
-import { Loader } from "vibe-library";
 import { ROUTES } from "@/routes/routes";
 
 
@@ -48,7 +47,7 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'Age',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue:  /^(1[6-9]|[2-5][0-9]|60)$/,
+            patternValue:  /^(?!.*[eE])(1[6-9]|[2-5][0-9]|60)$/,
             message: 'Please enter a valid age (16-60)',
             errors: errors,
             title: 'Age',
@@ -58,7 +57,7 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'CurrentWeight',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
+            patternValue: /^(?!.*[eE])(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
             message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
             title: 'Current weight',
@@ -68,7 +67,7 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'TargetWeight',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
+            patternValue: /^(?!.*[eE])(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
             message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
             title: 'Target weight',
@@ -88,7 +87,7 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'Height',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?:1[0-9][0-9]|2[0-9]{2}|300)$/,
+            patternValue: /^(?!.*[eE])(?:1[0-9][0-9]|2[0-9]{2}|300)$/,
             message: 'Please enter a valid height (from 100 to 300 cm)',
             errors: errors,
             title: 'Height',
@@ -98,7 +97,7 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'TimesPerWeek',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^[1-7]$/, 
+            patternValue: /^(?!.*[eE])[1-7]$/, 
             message: 'Please enter a valid number (from 1 to 7)',
             errors: errors,
             title: 'Times per Week',

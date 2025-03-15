@@ -35,7 +35,7 @@ export default function Home() {
     <div className={s.main}>
         <Header />
         <Preview />
-        <div className={s.main__plans}>
+        <div className={s.main__plans} id="plan">
         {
           planArray.map((plan) => (
             <Plan

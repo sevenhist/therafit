@@ -18,7 +18,9 @@ const Preview: FC = () => {
                 </div>
                 <div className={s.content__buttons}>
                     <Button variant="primary">Get started</Button>
-                    <Button variant="secondary">Preview</Button>
+                    <Button  variant="secondary" onClick={() => {
+                        document.getElementById("plan")?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }}>Preview</Button>
                 </div>
             </div>
         </div>

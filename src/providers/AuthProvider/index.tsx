@@ -10,7 +10,7 @@ export const AuthProvider:FC<PropsWithChildren> = ({children}) => {
         fetchGetUser();
     }, []);
     if(isLoading) {
-        return <Loader />;
+        return <Loader size="48" />;
     }
     return children
 }

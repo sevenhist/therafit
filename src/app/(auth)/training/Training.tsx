@@ -26,7 +26,7 @@ export const Training = () => {
                 isLoader ? (
                     <div className={s.loader}>
                         <h3>Please wait, your training plan is being generated.</h3>
-                        <Loader />
+                        <Loader size="48" />
                     </div>
                 ) :
                     <div>
