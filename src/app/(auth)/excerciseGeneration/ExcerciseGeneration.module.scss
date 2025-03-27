@@ -126,3 +126,15 @@
     }
     
 }
+
+.loader {
+    padding-top: toRem(100);
+    display: flex;
+    flex-direction: column;
+    row-gap: toRem(60);
+    & h3 {
+        font-size: toRem(22);
+        text-align: center;
+        font-weight: bold;
+    }
+}

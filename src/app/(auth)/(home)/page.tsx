@@ -7,12 +7,10 @@ import second_fitness_pict from "../../../assets/img/trainerin.svg"
 import firstFood from "../../../assets/img/food1.svg"
 import secondFood from "../../../assets/img/food2.svg"
 import thirdFood from "../../../assets/img/food3.svg"
-import { Footer } from "@/components/Footer";
 import Plan, { PlanProps } from "@/pages/Plan";
 import Preview from "@/pages/Preview";
 
 export default function Home() {
-
 
   const planArray: Array<PlanProps> = [
     {
@@ -30,7 +28,6 @@ export default function Home() {
       third_image: firstFood
     },
   ]
-
   return (
     <div className={s.main}>
         <Header />

@@ -10,6 +10,8 @@ import Image from "next/image";
 import background from "../../../assets/img/Group.png"
 import useTrainingsPlanStore from "@/modules/trainingsPlan/store";
 import { ROUTES } from "@/routes/routes";
+import { useEffect, useState } from "react";
+import { Loader } from "vibe-library";
 
 
 interface FormData {
@@ -24,6 +26,12 @@ interface FormData {
 export const ExcerciseGeneration = () => {
     const router = useRouter();
     const getTrainingsPlan = useTrainingsPlanStore(store => store.getTrainingsPlan)
+    const isLoading = useTrainingsPlanStore(state => state.isLoading);
+    const user = useUserStore(store => store.user)
+    const getTrainingsPlanById = useTrainingsPlanStore(store => store.getTrainingsPlanById)
+    const trainingsPlan = useTrainingsPlanStore(state => state.trainingsPlan);
+    const setIsLoading = useTrainingsPlanStore(store => store.setIsLoading)
+    const [isFetching, setIsFetching] = useState(true);
     const {
         register,
         handleSubmit,
@@ -36,18 +44,40 @@ export const ExcerciseGeneration = () => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         console.log("On Training Plan schicken: ", data)
         try {
-            await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight, data.TimesPerWeek);
-            router.push(ROUTES.AUTH.training);
+            await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight, data.TimesPerWeek).finally(() => {
+                //router.push(ROUTES.AUTH.training)
+            })
         } catch (error) {
             console.error("Login error:", error);
-        }
+        } 
     };
+
+    useEffect(() => {
+        setIsLoading(true)
+        const fetchTrainingPlan = async () => {
+            if (user) {
+                setIsFetching(true);
+                await getTrainingsPlanById(user.id);
+                setIsFetching(false);
+            }
+        };
+        fetchTrainingPlan().finally(() => {
+            setIsLoading(false)
+        });
+    }, []);
+
+    useEffect(() => {
+        if (!isFetching && trainingsPlan !== null) {
+            router.push(ROUTES.AUTH.training);
+        }
+    }, [isFetching, trainingsPlan]);
+
     const fields: Array<Field> = [
         {
             register: register,
             name: 'Age',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue:  /^(?!.*[eE])(1[6-9]|[2-5][0-9]|60)$/,
+            patternValue: /^(?!.*[eE])(1[6-9]|[2-5][0-9]|60)$/,
             message: 'Please enter a valid age (16-60)',
             errors: errors,
             title: 'Age',
@@ -57,17 +87,17 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'CurrentWeight',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?!.*[eE])(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
+            patternValue: /^(?!.*[eE])(?:[4-9][0-9]|1[0-9]{2}|200)$/,
             message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
             title: 'Current weight',
-            type: 'number'            
+            type: 'number'
         },
         {
             register: register,
             name: 'TargetWeight',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?!.*[eE])(?:[4-9][0-9]|[12][0-9]{2}|200)$/,
+            patternValue: /^(?!.*[eE])(?:[4-9][0-9]|1[0-9]{2}|200)$/,
             message: 'Please enter a valid weight (from 40 to 200 kg)',
             errors: errors,
             title: 'Target weight',
@@ -97,14 +127,21 @@ export const ExcerciseGeneration = () => {
             register: register,
             name: 'TimesPerWeek',
             required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?!.*[eE])[1-7]$/, 
+            patternValue: /^(?!.*[eE])[1-7]$/,
             message: 'Please enter a valid number (from 1 to 7)',
             errors: errors,
             title: 'Times per Week',
             type: 'number'
-        }        
+        }
     ];
-
+    if(isLoading) {
+        return (
+            <div className={s.loader}>
+                <h3>Please wait, your training plan is being generated.</h3>
+                <Loader size="48" />
+            </div>
+        ) 
+    }
     return (
         <div className={s.excerciseGeneration}>
             <Header />

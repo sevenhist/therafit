@@ -5,15 +5,12 @@ import { ROUTES } from '@/routes/routes'
 import { Accordion, Box, Button } from 'vibe-library'
 import useUserStore from '@/modules/userInformation/store'
 import { useRouter } from 'next/navigation'
-import useTrainingsPlanStore from '@/modules/trainingsPlan/store'
 
 
 export const Header = () => {
     const user = useUserStore(store => store.user)
     const logout = useUserStore(store => store.logout)
     const router = useRouter();
-    const currentTrainingsPlan = useTrainingsPlanStore(store => store.trainingsPlan)
-
     return (
         <>
             <Box ui={{
@@ -42,7 +39,7 @@ export const Header = () => {
                             gap: 3
                         }
                     }}>
-                        <Link href={currentTrainingsPlan ? ROUTES.AUTH.training : ROUTES.AUTH.excercise_generation} className={s.header__link}>EXERCISES</Link>
+                        <Link href={ROUTES.AUTH.training} className={s.header__link}>EXERCISES</Link>
                         <Link href={ROUTES.home} className={s.header__link}>NUTRITION</Link>
                         <Link href={ROUTES.home} className={s.header__link} onClick={() => {logout(router.push)}}>LOGOUT</Link>
                         {
