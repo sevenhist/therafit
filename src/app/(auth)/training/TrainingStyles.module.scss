@@ -8,13 +8,6 @@
     }
 }
 
-.excersise {
-    padding: toRem(5);
-    border: toRem(1) solid $bgColorLite;
-    p {
-        padding: toRem(2);
-    }
-}
 
 .loader {
     padding-top: toRem(100);
@@ -32,4 +25,68 @@
     text-align: center;
     font-size: toRem(22);
     padding-top: toRem(100);
+}
+
+.trainings {
+    display: flex;
+    flex-direction: column;
+    &__info {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(50);
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+    }
+    &__title {
+        text-align: center;
+    }
+    &__preview {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(70);
+    }
+    &__about {
+        display: flex;
+        column-gap: toRem(60);
+
+    }
+    &__name {
+        font-size: toRem(30);
+        font-weight: 500;
+    }
+    &__table_and_button {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(22);
+    }
+    &__btn {
+        display: flex;
+        justify-content: right;
+    }
+    &__time {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(20);
+    }
+}
+
+.table {
+    margin-top: toRem(50);
+    table-layout: fixed;
+    width: 100%;
+    &__title {
+        font-size: toRem(22);
+        font-weight: 600;
+    }
+    &__info {
+        td {
+            padding: toRem(10);
+            border: 1px solid $accent;
+        }
+    }
+    th {
+        padding: toRem(10); 
+    }
 }
