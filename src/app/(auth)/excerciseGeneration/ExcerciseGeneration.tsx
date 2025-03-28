@@ -137,7 +137,7 @@ export const ExcerciseGeneration = () => {
     if(isLoading) {
         return (
             <div className={s.loader}>
-                <h3>Please wait, your training plan is being generated.</h3>
+                <h3>Please wait, your training plan is being generated. This may take up to 3 minutes.</h3>
                 <Loader size="48" />
             </div>
         ) 
