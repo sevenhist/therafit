@@ -42,9 +42,8 @@ export const ExcerciseGeneration = () => {
 
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        console.log("On Training Plan schicken: ", data)
         try {
-            await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight, data.TimesPerWeek).finally(() => {
+            await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight).finally(() => {
                 //router.push(ROUTES.AUTH.training)
             })
         } catch (error) {
@@ -53,7 +52,6 @@ export const ExcerciseGeneration = () => {
     };
 
     useEffect(() => {
-        setIsLoading(true)
         const fetchTrainingPlan = async () => {
             if (user) {
                 setIsFetching(true);
@@ -61,9 +59,7 @@ export const ExcerciseGeneration = () => {
                 setIsFetching(false);
             }
         };
-        fetchTrainingPlan().finally(() => {
-            setIsLoading(false)
-        });
+        fetchTrainingPlan()
     }, []);
 
     useEffect(() => {
@@ -121,16 +117,6 @@ export const ExcerciseGeneration = () => {
             message: 'Please enter a valid height (from 100 to 300 cm)',
             errors: errors,
             title: 'Height',
-            type: 'number'
-        },
-        {
-            register: register,
-            name: 'TimesPerWeek',
-            required: "Invalid Input! Please enter a numeric value.",
-            patternValue: /^(?!.*[eE])[1-7]$/,
-            message: 'Please enter a valid number (from 1 to 7)',
-            errors: errors,
-            title: 'Times per Week',
             type: 'number'
         }
     ];

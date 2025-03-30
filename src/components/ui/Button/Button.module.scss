@@ -11,7 +11,7 @@
     }
     &__secondary {
         background-color: $blackTextColor;
-        &:hover {
+        &:hover, &:active {
             background-color: $greyColor !important;
         }
     }
@@ -29,7 +29,7 @@
         width: auto;
         max-width: toRem(200);
     }
-    &:hover {
+    &:hover, &:active {
         background-color: $accentHover;
     }
     &.fitContent {
