@@ -97,7 +97,7 @@ export const Training = () => {
                                                 value.exercises.map((exercise: ExcersisesResponse, idx) => (
                                                     <tr key={`${index}-${idx}`} className={s.table__info}>
                                                         <td>Day {index + 1}</td>
-                                                        <td><Link target="_blank" href={`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.exercise.name)}`} passHref><Image src={youtube} alt="icon" style={{ cursor: "pointer" }} /></Link></td>
+                                                        <td><Link target="_blank" href={`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.exercise.name + " exercise tutorial")}`} passHref><Image src={youtube} alt="icon" style={{ cursor: "pointer" }} /></Link></td>
                                                         <td>{exercise.exercise.name}</td>
                                                         <td>{exercise.repetitions}</td>
                                                         <td>{exercise.sets}</td>
