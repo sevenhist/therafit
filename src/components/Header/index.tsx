@@ -44,7 +44,7 @@ export const Header = () => {
                         <Link href={ROUTES.home} className={s.header__link} onClick={() => {logout(router.push)}}>LOGOUT</Link>
                         {
                             user ? (
-                                <Link href={ROUTES.home} className={s.header__link}>PROFILE</Link>
+                                <Link href={ROUTES.AUTH.profile} className={s.header__link}>PROFILE</Link>
                             ) : (
                                 <Link href={ROUTES.AUTH.login} className={s.header__link}>LOGIN</Link>
                             )

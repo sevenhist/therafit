@@ -1,4 +1,3 @@
-
 import { API_URL } from "@/api/http";
 import AuthService from "@/api/services/AuthService";
 import { IUser } from "@/models/IUser";
@@ -21,7 +20,8 @@ interface UserState {
     fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<void>,
     fetchGetUser: () => void,
     logout: (redirect: (url: string) => void) => void,
-    fetchGetAllUsers: () => Promise<void>
+    fetchGetAllUsers: () => Promise<void>,
+    resetPassword: (newPassword: string) => Promise<void>
 }
 
 const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
@@ -118,6 +118,18 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             });
         }
     },
+    resetPassword: async (newPassword: string) => {
+        try {
+            await AuthService.resetPassword(newPassword);
+            toast("Password reset successful", {
+                type: "success"
+            });
+        } catch (error: any) {
+            toast(error.response?.data?.message || error.message, {
+                type: "error"
+            });
+        }
+    }
 })), { name: 'userStore', version: 1 }))
 
 export default useUserStore

@@ -1,4 +1,3 @@
-
 export const ROUTES = {
     home: "/",
     getUsers: "/getUsers",
@@ -11,5 +10,6 @@ export const ROUTES = {
         registration: "/registration",
         excercise_generation: "excerciseGeneration",
         training: "training",
+        profile: "/profile"
     }
 }

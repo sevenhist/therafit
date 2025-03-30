@@ -21,4 +21,7 @@ export default class AuthService {
     static async getAllUsers(): Promise<any> {
         return $api.get('/auth/users');
     }
+    static async resetPassword(newPassword: string): Promise<AxiosResponse> {
+        return $api.post('/auth/reset-password', { newPassword });
+    }
 }
