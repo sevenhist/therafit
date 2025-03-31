@@ -59,10 +59,6 @@ export const Training = () => {
 
     const [selectedDay, setSelectedDay] = useState<string | undefined>(undefined);
 
-    const handleDayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedDay(event.target.value);
-    };
-
     return (
         <div>
             <Header />
@@ -87,7 +83,10 @@ export const Training = () => {
                                                 <p>Duration in weeks: {trainingsPlan?.trainingPlan.trainingPlan.duration_in_weeks}</p>
                                                 <p>Times Per week: {trainingsPlan?.trainingPlan.trainingPlan.times_per_week}</p>
                                             </div>
-                                            <select className={s.select} onChange={handleDayChange} value={selectedDay}>
+                                            <select className={s.select} onChange={(event) => {
+                                                setSelectedDay(event.target.value);
+                                                setShowPopup(false); 
+                                            }} value={selectedDay}>
                                                 {trainingsPlan?.trainingPlan.trainings.map(
                                                     (value: TrainingsResponse, index) => (
                                                         <option key={index} value={value.day}>
