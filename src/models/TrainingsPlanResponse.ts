@@ -18,7 +18,8 @@ export interface ExcersisesResponse {
 export interface TrainingsResponse {
     name: string,
     duration_in_min: number,
-    exercises: ExcersisesResponse[]
+    exercises: ExcersisesResponse[],
+    day?: string
 }
 
 

@@ -77,7 +77,7 @@
     table-layout: fixed;
     width: 100%;
     &__title {
-        font-size: toRem(22);
+        font-size: toRem(18);
         font-weight: 600;
         & th {
             color: $greyWhiteColor;
@@ -87,6 +87,7 @@
         border-top: toRem(1) solid $greyWhiteColor;
         td {
             padding: toRem(10);
+            text-align: left;
             border-bottom: toRem(1) solid $greyWhiteColor;
         }
     }
@@ -95,17 +96,42 @@
     }
 }
 
-// .tooltip {
-//     position: absolute;
-//     top: 100%;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     background: black;
-//     color: white;
-//     padding: 8px 10px;
-//     border-radius: 5px;
-//     font-size: 12px;
-//     white-space: nowrap;
-//     z-index: 100;
-//     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-// }
+.popup {
+    display: flex;
+    &__container {
+        height: toRem(80);
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(20);
+        & p {
+            line-height: toRem(20);
+        }
+        & button {
+            max-width: toRem(200);
+            text-align: center;
+            padding: toRem(14) toRem(5);
+            background-color: $blackTextColor;
+            border-radius: toRem(5);
+            font-size: toRem(14);
+            &:hover, &:active {
+                background-color: $greyColor;
+            }
+        }
+    }
+    &__desc {
+        font-weight: 600;
+    }
+}
+
+
+.select {
+    background-color: $accent;
+    outline: none;
+    color: $whiteColor;
+    padding: toRem(6) toRem(20);
+    width: fit-content;
+    cursor: pointer;
+    border-radius: toRem(5);
+}

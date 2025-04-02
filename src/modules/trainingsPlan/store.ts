@@ -15,23 +15,47 @@ interface TrainingsPlanState {
     isLoading: boolean,
     setIsLoading: (load: boolean) => void,
     setTrainingsPlan: (trainings_plan: TrainingsPlanResponse | null) => void,
-    getTrainingsPlan: (age: number, current_weight: number, gender: string, height: number, target_weight: number, times_per_week: number) => Promise<void>,
+    getTrainingsPlan: (age: number, current_weight: number, gender: string, height: number, target_weight: number) => Promise<void>,
     getTrainingsPlanById: (id: number) => Promise<void>,
     deleteTrainingsPlanById: (id: number) => Promise<void>
 }
 
+const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
 const useTrainingsPlanStore = create<TrainingsPlanState>()(devtools(immer((set, get) => ({
     trainingsPlan: null,
     isLoading: false,
-    setTrainingsPlan: (trainings_plan: TrainingsPlanResponse | null) => set(() => ({
-        trainingsPlan: trainings_plan,
-    })),
+    setTrainingsPlan: (trainings_plan: TrainingsPlanResponse | null) => {
+        if (trainings_plan) {
+            let assignedDays = new Set<string>();
+            let dayIndex = 0;
+            
+            trainings_plan = {
+                ...trainings_plan,
+                trainingPlan: {
+                    ...trainings_plan.trainingPlan,
+                    trainings: trainings_plan.trainingPlan.trainings.map((training) => {
+                        let day;
+                        do {
+                            day = daysOfWeek[dayIndex % daysOfWeek.length];
+                            dayIndex++;
+                        } while (assignedDays.has(day));
+                        assignedDays.add(day);
+                        
+                        return { ...training, day };
+                    })
+                }
+            };
+        }
+        set(() => ({ trainingsPlan: trainings_plan }));
+    },
     setIsLoading: (load: boolean) => set(() => ({
         isLoading: load,
     })),
-    getTrainingsPlan: async (age: number, current_weight: number, gender: string, height: number, target_weight: number, times_per_week: number) => {
+    getTrainingsPlan: async (age: number, current_weight: number, gender: string, height: number, target_weight: number) => {
         get().setIsLoading(true);
-        TrainingsPlanService.getTrainingsPlan(current_weight, target_weight, age, times_per_week, gender, height)
+        console.log("This is data on trainings: ", age, current_weight, gender, height, target_weight)
+        TrainingsPlanService.getTrainingsPlan(current_weight, target_weight, age, gender, height)
         .then((response) => {
             console.log("TrainingsPlan: ", response.data)
             get().setTrainingsPlan(response.data)
