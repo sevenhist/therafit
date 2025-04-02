@@ -1,65 +1,53 @@
 'use client'
-import s from "./profile.module.scss"
+import s from "./ResetPassword.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import background from "../../../assets/img/Group.png"
+import background from "@/assets/img/Group.png"
 import { ROUTES } from "@/routes/routes";
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AuthService from "@/api/services/AuthService";
 
 interface FormData {
-    currentPassword: string,
-    newPassword: string,
+    password: string,
     confirmPassword: string
 }
 
-export const Profile = () => {
+interface ResetPasswordProps {
+    token: string;
+}
+
+export const ResetPassword = ({ token }: ResetPasswordProps) => {
     const router = useRouter();
-    const user = useUserStore(store => store.user);
-    const changePassword = useUserStore(store => store.changePassword);
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<FormData>({
         mode: 'all'
     });
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        if (data.newPassword !== data.confirmPassword) {
-            toast("New passwords do not match", { type: "error" });
+        if (data.password !== data.confirmPassword) {
+            toast("Passwords do not match", { type: "error" });
             return;
         }
         try {
-            await AuthService.changePassword(data.newPassword);
-            toast("Password changed successfully", { type: "success" });
+            await AuthService.resetPassword(token, data.password);
+            toast("Password reset successfully", { type: "success" });
             router.push(ROUTES.AUTH.login);
         } catch (error: any) {
-            toast(error.response?.data?.message || "Failed to change password", { type: "error" });
+            toast(error.response?.data?.message || "Failed to reset password", { type: "error" });
         }
     };
 
     const fields: Array<Field> = [
         {
             register: register,
-            name: 'currentPassword',
-            required: "Please enter your current password",
-            patternValue: /^.{8,}$/,
-            message: 'Password must be at least 8 characters',
-            errors: errors,
-            title: 'Current Password',
-            type: 'password'
-        },
-        {
-            register: register,
-            name: 'newPassword',
+            name: 'password',
             required: "Please enter your new password",
             patternValue: /^.{8,}$/,
             message: 'Password must be at least 8 characters',
@@ -74,30 +62,30 @@ export const Profile = () => {
             patternValue: /^.{8,}$/,
             message: 'Password must be at least 8 characters',
             errors: errors,
-            title: 'Confirm New Password',
+            title: 'Confirm Password',
             type: 'password'
         }
     ];
 
     return (
-        <div className={s.profile}>
+        <div className={s.resetPassword}>
             <Header />
-            <div className={s.profile__background}>
+            <div className={s.resetPassword__background}>
                 <Image
-                    className={s.profile__background__img}
+                    className={s.resetPassword__background__img}
                     src={background}
                     alt="background"
                     priority
                 />
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className={s.profile__form}>
-                <h1 className={s.profile__title}>Change Password</h1>
-                <p className={s.profile__description}>
-                    Please enter your current password and choose a new password below.
+            <form onSubmit={handleSubmit(onSubmit)} className={s.resetPassword__form}>
+                <h1 className={s.resetPassword__title}>Reset Password</h1>
+                <p className={s.resetPassword__description}>
+                    Please enter and confirm your new password below.
                 </p>
                 {fields.map((field, key) => (
                     <FieldBox
-                        className={s.profile__input}
+                        className={s.resetPassword__input}
                         key={key}
                         title={field.title}
                         register={field.register}
@@ -109,8 +97,8 @@ export const Profile = () => {
                         type={field.type}
                     />
                 ))}
-                <Button type="submit" className={s.profile__button}>Change Password</Button>
+                <Button type="submit" className={s.resetPassword__button}>Reset Password</Button>
             </form>
         </div>
     );
-}
+} 

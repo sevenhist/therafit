@@ -72,16 +72,33 @@
         }
     }
     &__footer {
+        margin-top: toRem(1);
         display: flex;
-        column-gap: toRem(4);
+        gap: toRem(5);
+        align-items: center;
         justify-content: center;
+
         &__text {
             color: $greyTextColor;
+            font-size: toRem(14);
         }
-        &__registration {
-            border-bottom: toRem(1) solid $whiteColor;
+
+        &__register, &__forgot {
+            color: $accent;
+            font-size: toRem(14);
+            cursor: pointer;
+            transition: color 0.3s ease;
+
             &:hover {
-                opacity: 0.8;
+                color: darken($accent, 10%);
+            }
+        }
+
+        &__forgot {
+            color: $greyTextColor;
+            
+            &:hover {
+                color: $accent;
             }
         }
     }
