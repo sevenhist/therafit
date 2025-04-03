@@ -101,12 +101,6 @@ export const Login: FC<LoginProps> = () => {
                         Register
                     </Link>
                 </div>
-                <div className={s.login__footer}>
-                    <span className={s.login__footer__text}>Forgot Password?</span>
-                    <Link href={ROUTES.AUTH.forgotPassword} className={s.login__footer__forgot}>
-                        Reset Password
-                    </Link>
-                </div>
             </form>
         </div>
     )

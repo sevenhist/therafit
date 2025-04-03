@@ -10,8 +10,6 @@ export const ROUTES = {
         registration: "/registration",
         excercise_generation: "excerciseGeneration",
         training: "training",
-        profile: "/profile",
-        forgotPassword: "/forgot-password",
-        resetPassword: "/reset-password"
+        profile: "/profile"
     }
 }
