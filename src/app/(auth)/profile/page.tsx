@@ -1,5 +1,5 @@
 'use client'
-import { Profile } from "./Profile"
+import { Profile } from "@/app/(auth)/profile/Profile"
 
 export default function Page() {
     return (
