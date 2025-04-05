@@ -1,4 +1,4 @@
-import s from "./Profile.module.scss"
+import s from "./ProfileInformation.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
