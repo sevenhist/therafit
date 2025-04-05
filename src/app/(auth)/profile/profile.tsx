@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import background from "../../../assets/img/Group.png"
 import { ROUTES } from "@/routes/routes";
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import AuthService from "@/api/services/AuthService";
 
