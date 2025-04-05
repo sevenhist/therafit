@@ -7,11 +7,12 @@ import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import background from "../../../assets/img/Group.png"
+import background from "@/assets/img/Group.png"
 import useTrainingsPlanStore from "@/modules/trainingsPlan/store";
-import { ROUTES } from "@/routes/routes";
+
 import { useEffect, useState } from "react";
 import { Loader } from "vibe-library";
+import { ROUTES } from "@/routes/routes";
 
 
 interface FormData {
@@ -30,8 +31,8 @@ export const ExcerciseGeneration = () => {
     const user = useUserStore(store => store.user)
     const getTrainingsPlanById = useTrainingsPlanStore(store => store.getTrainingsPlanById)
     const trainingsPlan = useTrainingsPlanStore(state => state.trainingsPlan);
-    const setIsLoading = useTrainingsPlanStore(store => store.setIsLoading)
-    const [isFetching, setIsFetching] = useState(true);
+    // const setIsLoading = useTrainingsPlanStore(store => store.setIsLoading)
+    const [trainingsLoader, setTrainingsLoader] = useState(false);
     const {
         register,
         handleSubmit,
@@ -43,30 +44,32 @@ export const ExcerciseGeneration = () => {
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
+            setTrainingsLoader(true)
             await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight).finally(() => {
-                //router.push(ROUTES.AUTH.training)
+                setTrainingsLoader(false)
+                // router.push(ROUTES.AUTH.training)
             })
         } catch (error) {
             console.error("Login error:", error);
-        } 
+        }
     };
 
     useEffect(() => {
-        const fetchTrainingPlan = async () => {
-            if (user) {
-                setIsFetching(true);
-                await getTrainingsPlanById(user.id);
-                setIsFetching(false);
-            }
-        };
-        fetchTrainingPlan()
+        // const fetchTrainingPlan = async () => {
+        if (user) {
+            // setIsFetching(true);
+            getTrainingsPlanById(user.id);
+            // setIsFetching(false);
+        }
+        // };
+        // fetchTrainingPlan()
     }, []);
 
     useEffect(() => {
-        if (!isFetching && trainingsPlan !== null) {
+        if (trainingsPlan !== null) {
             router.push(ROUTES.AUTH.training);
         }
-    }, [isFetching, trainingsPlan]);
+    }, [trainingsPlan]);
 
     const fields: Array<Field> = [
         {
@@ -120,13 +123,19 @@ export const ExcerciseGeneration = () => {
             type: 'number'
         }
     ];
-    if(isLoading) {
+    if (isLoading) {
         return (
-            <div className={s.loader}>
-                <h3>Please wait, your training plan is being generated. This may take up to 3 minutes.</h3>
-                <Loader size="48" />
+            <div>
+                <Header />
+                <div className={s.loader}>
+                    {
+                        trainingsLoader &&
+                        <h3>Please wait, your training plan is being generated. This may take up to 3 minutes.</h3>
+                    }
+                    <Loader size="48" />
+                </div>
             </div>
-        ) 
+        )
     }
     return (
         <div className={s.excerciseGeneration}>
