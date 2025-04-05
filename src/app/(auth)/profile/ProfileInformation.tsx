@@ -17,7 +17,7 @@ interface FormData {
     confirmPassword: string
 }
 
-export const Profile = () => {
+export const ProfileInformation = () => {
     const router = useRouter();
     const user = useUserStore(store => store.user);
     const changePassword = useUserStore(store => store.changePassword);
