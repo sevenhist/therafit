@@ -1,6 +1,6 @@
 'use client'
 import { Profile } from "./profile";
 
-export default function ProfilePage() {
+export default function Page() {
     return <Profile />;
 }
