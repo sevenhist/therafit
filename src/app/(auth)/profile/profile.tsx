@@ -1,4 +1,3 @@
-'use client'
 import s from "./Profile.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
@@ -7,7 +6,7 @@ import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import background from "../../../assets/img/Group.png"
+import background from "@/assets/img/Group.png"
 import { ROUTES } from "@/routes/routes";
 import { toast } from "react-toastify";
 import AuthService from "@/api/services/AuthService";
