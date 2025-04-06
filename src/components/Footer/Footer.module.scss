@@ -5,7 +5,8 @@
 .footer {
     width: 100%;
     border-top: 1px solid $greyBorder;
-    margin-top: toRem(60);
+    //margin-top: toRem(60);
+    margin-top: auto;
 
     &__container {
         @include adaptiveValue("padding", 30, 15);

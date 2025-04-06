@@ -7,9 +7,6 @@
     min-height: 100vh;
     padding: 0 toRem(60);
     width: 100%;
-    > *:first-child {
-        flex: 1;
-    }
     @media(max-width: $mobileSmall) {
         padding: 0 toRem(20);
     }

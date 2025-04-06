@@ -54,22 +54,22 @@ export const ExcerciseGeneration = () => {
         }
     };
 
-    useEffect(() => {
-        // const fetchTrainingPlan = async () => {
-        if (user) {
-            // setIsFetching(true);
-            getTrainingsPlanById(user.id);
-            // setIsFetching(false);
-        }
-        // };
-        // fetchTrainingPlan()
-    }, []);
+    // useEffect(() => {
+    //     // const fetchTrainingPlan = async () => {
+    //     if (user) {
+    //         // setIsFetching(true);
+    //         getTrainingsPlanById(user.id);
+    //         // setIsFetching(false);
+    //     }
+    //     // };
+    //     // fetchTrainingPlan()
+    // }, []);
 
-    useEffect(() => {
-        if (trainingsPlan !== null) {
-            router.push(ROUTES.AUTH.training);
-        }
-    }, [trainingsPlan]);
+    // useEffect(() => {
+    //     if (trainingsPlan !== null) {
+    //         router.push(ROUTES.AUTH.training);
+    //     }
+    // }, [trainingsPlan]);
 
     const fields: Array<Field> = [
         {
