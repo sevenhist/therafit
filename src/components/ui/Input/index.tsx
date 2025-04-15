@@ -61,6 +61,7 @@ export const FieldBox: FC<Field> = (props) => {
                 }))}
                 type={props.type}
                 placeholder={props.placeholder}
+                defaultValue={props.value}
             />
             {props.errors[props.name] &&
                 <span className={s.error__field}>

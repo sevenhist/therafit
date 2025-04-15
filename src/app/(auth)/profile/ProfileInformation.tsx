@@ -4,12 +4,10 @@ import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import useUserStore from "@/modules/userInformation/store";
 import { Header } from "@/components/Header";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import background from "@/assets/img/Group.png"
-import { ROUTES } from "@/routes/routes";
 import { toast } from "react-toastify";
-import AuthService from "@/api/services/AuthService";
+import { useRouter } from "next/navigation";
 
 interface FormData {
     currentPassword: string,
@@ -18,9 +16,9 @@ interface FormData {
 }
 
 export const ProfileInformation = () => {
-    const router = useRouter();
-    const user = useUserStore(store => store.user);
     const changePassword = useUserStore(store => store.changePassword);
+    const logout = useUserStore(store => store.logout)
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -32,18 +30,16 @@ export const ProfileInformation = () => {
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         if (data.newPassword !== data.confirmPassword) {
-            toast("New passwords do not match", { type: "error" });
             return;
         }
         try {
-            await AuthService.changePassword(data.newPassword);
-            toast("Password changed successfully", { type: "success" });
-            router.push(ROUTES.AUTH.login);
+            await changePassword(data.currentPassword, data.newPassword).then(() => {
+                logout(router.push)
+            })
         } catch (error: any) {
             toast(error.response?.data?.message || "Failed to change password", { type: "error" });
         }
     };
-
     const fields: Array<Field> = [
         {
             register: register,
@@ -70,10 +66,12 @@ export const ProfileInformation = () => {
             name: 'confirmPassword',
             required: "Please confirm your new password",
             patternValue: /[0-9a-zA-Z!@#$%^&*]{8,}/g,
-            message: 'Password must be at least 8 characters',
+            message: 'Password must be correct',
             errors: errors,
             title: 'Confirm New Password',
-            type: 'password'
+            type: 'password',
+            validation: "newPassword",
+            watch: watch,
         }
     ];
 
@@ -90,9 +88,6 @@ export const ProfileInformation = () => {
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className={s.profile__form}>
                 <h1 className={s.profile__title}>Change Password</h1>
-                <p className={s.profile__description}>
-                    Please enter your current password and choose a new password below.
-                </p>
                 {fields.map((field, key) => (
                     <FieldBox
                         className={s.profile__input}
@@ -105,6 +100,9 @@ export const ProfileInformation = () => {
                         message={field.message}
                         errors={field.errors}
                         type={field.type}
+                        value={field.value}
+                        watch={field.watch}
+                        validation={field.validation}
                     />
                 ))}
                 <Button type="submit" className={s.profile__button}>Change Password</Button>

@@ -1,0 +1,12 @@
+@import "src/scss/constans.scss";
+
+.modal {
+    &__info {
+        display: flex;
+        flex-direction: column;
+        row-gap: toRem(20);
+        & button {
+            white-space: nowrap;
+        }
+    }
+}

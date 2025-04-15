@@ -21,7 +21,7 @@ interface UserState {
     fetchGetUser: () => void,
     logout: (redirect: (url: string) => void) => void,
     fetchGetAllUsers: () => Promise<void>,
-    changePassword: (newPassword: string) => Promise<void>
+    changePassword: (currentPassword: string, newPassword: string) => Promise<void>
 }
 
 const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
@@ -118,9 +118,9 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             });
         }
     },
-    changePassword: async (newPassword: string) => {
-        try {
-            await AuthService.changePassword(newPassword);
+    changePassword: async (currentPassword: string, newPassword: string) => {
+        try { 
+            await AuthService.changePassword(currentPassword, newPassword);
             toast("Password changed successfully", {
                 type: "success"
             });

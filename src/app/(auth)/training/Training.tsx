@@ -9,12 +9,13 @@ import { Loader } from "vibe-library"
 import s from "./TrainingStyles.module.scss"
 import { useEffect, useState } from "react"
 import { Typography } from "@/components/Typography"
-import frauOnTrainings from "@/assets/img/woman.png"
+import frauOnTrainings from "@/assets/img/woman.svg"
 import Image from "next/image"
 import info from "@/assets/img/info.svg"
 import youtube from "@/assets/img/youtube.svg"
 import Link from "next/link"
 import useUserStore from "@/modules/userInformation/store"
+import TransitionsModal from "@/components/TransitionsModal"
 
 export const Training = () => {
 
@@ -80,10 +81,6 @@ export const Training = () => {
                                 <Image src={frauOnTrainings} alt="image"></Image>
                                 <div className={s.trainings__info}>
                                     <p className={s.trainings__name}>{trainingsPlan?.trainingPlan.trainingPlan.name}</p>
-                                    <div className={s.trainings__time}>
-                                        <p>Duration in weeks: {trainingsPlan?.trainingPlan.trainingPlan.duration_in_weeks}</p>
-                                        <p>Times Per week: {trainingsPlan?.trainingPlan.trainingPlan.times_per_week}</p>
-                                    </div>
                                     <select className={s.select} onChange={(event) => {
                                         setSelectedDay(event.target.value);
                                         setShowPopup(false);
@@ -134,16 +131,6 @@ export const Training = () => {
                                     )}
                                 </tbody>
                             </table>
-                            {showPopup && (
-                                <div className={s.popup__container}>
-                                    <div className={s.popup}>
-                                        <div className={s.popup__content}>
-                                            <p><span className={s.popup__desc}>Description of excercise: </span>{popupContent}</p>
-                                            <button onClick={() => setShowPopup(false)}>Close Description</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
                             <div className={s.trainings__btn}>
                                 <Button className={s.trainings__btn} onClick={() => onDeleteTrainingsPlan()}>Delete Training Plan</Button>
                             </div>
@@ -154,6 +141,14 @@ export const Training = () => {
                 }
 
             </div>
+            {showPopup && (
+                <TransitionsModal
+                    isOpen={showPopup}
+                    desc="Description of excercise: "
+                    info={popupContent}
+                    onClose={() => setShowPopup(false)}
+                />
+            )}
         </div>
     )
 }
