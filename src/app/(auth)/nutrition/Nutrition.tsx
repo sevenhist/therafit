@@ -41,8 +41,22 @@ export const Nutrition = () => {
     }, [isChecking, nutritionPlan]);
 
     useEffect(() => {
-        setSelectedDay(nutritionPlan?.nutritionPlan.nutritionPlan.mealsProWeekday[0].weekday);
+        const storedDay = localStorage.getItem("selectedNutritionDay");
+        const defaultDay = nutritionPlan?.nutritionPlan.nutritionPlan.mealsProWeekday[0].weekday;
+    
+        if (storedDay && nutritionPlan?.nutritionPlan.nutritionPlan.mealsProWeekday.some(day => day.weekday === storedDay)) {
+            setSelectedDay(storedDay);
+        } else {
+            setSelectedDay(defaultDay);
+        }
     }, [nutritionPlan]);
+
+    useEffect(() => {
+        if (selectedDay) {
+            localStorage.setItem("selectedNutritionDay", selectedDay);
+        }
+    }, [selectedDay]);
+    
 
 
     if (isChecking || isLoader || (!isChecking && nutritionPlan === null)) {

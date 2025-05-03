@@ -46,9 +46,24 @@ export const Training = () => {
         }
     }, [isChecking, trainingsPlan]);
 
+
     useEffect(() => {
-        setSelectedDay(trainingsPlan?.trainingPlan.trainings[0].day);
+        const storedDay = localStorage.getItem("selectedTrainingDay");
+        const defaultDay = trainingsPlan?.trainingPlan.trainings[0].day;
+
+        if (storedDay && trainingsPlan?.trainingPlan.trainings.some(day => day.day === storedDay)) {
+            setSelectedDay(storedDay);
+        } else {
+            setSelectedDay(defaultDay);
+        }
     }, [trainingsPlan]);
+
+    useEffect(() => {
+        if (selectedDay) {
+            localStorage.setItem("selectedTrainingDay", selectedDay);
+        }
+    }, [selectedDay]);
+    
 
 
     if (isChecking || isLoader) {
