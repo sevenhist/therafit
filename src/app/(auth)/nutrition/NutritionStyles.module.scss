@@ -117,7 +117,7 @@
                 font-size: toRem(9);
             }
             @media (max-width: $mobileSmall) {
-                font-size: toRem(8);
+                font-size: toRem(7);
             }
         }
     }
@@ -139,7 +139,7 @@
             }
         }
         @media (max-width: $mobile) {
-            font-size: toRem(13);
+            font-size: toRem(11);
         }
         @media (max-width: 550px) {
             font-size: toRem(10);

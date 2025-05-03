@@ -8,11 +8,9 @@ import { Header } from "@/components/Header";
 import { Loader } from "vibe-library";
 import useUserStore from "@/modules/userInformation/store";
 import { Typography } from "@/components/Typography";
-import youtube from "@/assets/img/youtube.svg"
 import frauEatSalat from "@/assets/img/bewusste-ernaehrung-bild.jpg"
 import Image from "next/image";
 import info from "@/assets/img/info.svg"
-import Link from "next/link";
 import TransitionsModal from "@/components/TransitionsModal";
 import { NutritionMeal, NutritionMealsPerWeekday } from "@/models/NutritionPlanResponse";
 
@@ -103,10 +101,9 @@ export const Nutrition = () => {
                                 <thead>
                                     <tr className={s.table__title}>
                                         <th>Meal</th>
-                                        <th>Link</th>
                                         <th>Calories</th>
                                         <th>Protein</th>
-                                        {/* <th>Carbohydrates</th> */}
+                                        <th>Carbohydrates</th>
                                         <th>Fat</th>
                                         <th>Sugar</th>
                                         <th>Info</th>
@@ -120,10 +117,9 @@ export const Nutrition = () => {
                                         mealsProWeekday.meals.map((meal: NutritionMeal, idx) =>
                                         <tr key={`${index}-${idx}`}  className={s.table__info}>
                                             <td>{meal.name}</td>
-                                            <td><Link target="_blank" href={`https://www.youtube.com/results?search_query=${encodeURIComponent(meal.description)}`} passHref><Image src={youtube} alt="icon" style={{ cursor: "pointer" }} /></Link></td>
                                             <td>{meal.calories}</td>
                                             <td>{meal.protein}</td>
-                                            {/* <td>{meal.carbohydrates}</td> */}
+                                            <td>{meal.carbohydrates}</td>
                                             <td>{meal.fat}</td>
                                             <td>{meal.sugar}</td>
                                             <td><Image onClick={() => {
