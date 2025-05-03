@@ -9,6 +9,7 @@ import background from "@/assets/img/Group.png"
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import usePlansStore from "@/modules/Plans/store";
+import { useEffect } from "react";
 
 interface FormData {
     currentPassword: string,
@@ -22,7 +23,8 @@ export const ProfileInformation = () => {
     const user = useUserStore(store => store.user)
     const logout = useUserStore(store => store.logout)
     const router = useRouter();
-    const trainingPlan = usePlansStore(store => store.trainingsPlan)
+    const trainingPlan = usePlansStore(store => store.trainingsPlan);
+    const getTrainingsPlanById = usePlansStore(store => store.getTrainingsPlanById);
     const {
         register,
         handleSubmit,
@@ -44,6 +46,11 @@ export const ProfileInformation = () => {
             toast(error.response?.data?.message || "Failed to change password", { type: "error" });
         }
     };
+    useEffect(() => {
+        if (user && !trainingPlan) {
+            getTrainingsPlanById(user.id);
+        }
+    }, [user, trainingPlan]);
     const fields: Array<Field> = [
         {
             register: register,

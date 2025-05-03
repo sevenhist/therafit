@@ -110,6 +110,8 @@ const usePlansStore = create<PlansState>()(devtools(immer((set, get) => ({
             await PlansService.deleteBothPlansById(id);
             get().setTrainingsPlan(null);
             get().setNutritionPlan(null);
+            localStorage.removeItem("selectedNutritionDay");
+            localStorage.removeItem("selectedTrainingDay");
             toast("Success Delete of Plans", { type: "success" });
         } catch (error: any) {
             toast(error.response?.data?.message || error.message, { type: "error" });

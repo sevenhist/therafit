@@ -28,11 +28,9 @@ export const PlansGeneration = () => {
     const router = useRouter();
     const generatePlans = useTrainingsPlanStore(store => store.generatePlans)
     const isLoading = useTrainingsPlanStore(state => state.isLoading);
-    const user = useUserStore(store => store.user)
-    const getTrainingsPlanById = useTrainingsPlanStore(store => store.getTrainingsPlanById)
-    const trainingsPlan = useTrainingsPlanStore(state => state.trainingsPlan);
+    const [isGeneration, setIsGeneration] = useState(false)
     // const setIsLoading = useTrainingsPlanStore(store => store.setIsLoading)
-    const [trainingsLoader, setTrainingsLoader] = useState(isLoading);
+
     const {
         register,
         handleSubmit,
@@ -45,10 +43,12 @@ export const PlansGeneration = () => {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
             //setTrainingsLoader(true)
+            setIsGeneration(true)
             await generatePlans(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight)
             .finally(() => {
                 //setTrainingsLoader(false)
                 router.push(ROUTES.AUTH.training)
+                setIsGeneration(false)
             })
         } catch (error) {
             console.error("Excercise Geneartion error:", error);
@@ -112,7 +112,7 @@ export const PlansGeneration = () => {
             <div>
                 <Header />
                 <div className={s.loader}>
-                        <h3>Please wait, your plans are being generated. This may take up to 3 minutes.</h3>
+                    {isGeneration && <h3>Please wait, your plans are being generated. This may take up to 3 minutes.</h3> }
                     <Loader size="48" />
                 </div>
             </div>
