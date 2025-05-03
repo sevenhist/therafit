@@ -1,5 +1,5 @@
 'use client'
-import useTrainingsPlanStore from "@/modules/trainingsPlan/store";
+import useTrainingsPlanStore from "@/modules/Plans/store";
 import useUserStore from "@/modules/userInformation/store";
 import { ROUTES } from "@/routes/routes";
 import { useRouter } from "next/navigation";

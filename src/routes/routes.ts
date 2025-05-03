@@ -8,8 +8,9 @@ export const ROUTES = {
     AUTH: {
         login: "/login",
         registration: "/registration",
-        excercise_generation: "excerciseGeneration",
+        plans_generation: "plansGeneration",
         training: "training",
+        nutrition: "/nutrition",
         profile: "/profile"
     }
 }

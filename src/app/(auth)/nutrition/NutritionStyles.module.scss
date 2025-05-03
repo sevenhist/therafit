@@ -1,6 +1,6 @@
 @import "src/scss/constans.scss";
 
-.trainingsPlan {
+.nutritionPlan {
     padding: toRem(10);
     border: toRem(1) solid $accent;
     p {
@@ -20,13 +20,13 @@
     }
 }
 
-.no_training {
+.no_nutrition {
     text-align: center;
     font-size: toRem(22);
     padding-top: toRem(100);
 }
 
-.trainings {
+.nutrition {
     display: flex;
     flex-direction: column;
     &__info {
@@ -61,6 +61,11 @@
         display: flex;
         column-gap: toRem(60);
         align-items: center;
+        & img {
+            width: toRem(493.4999694824219);
+            height: toRem(329);
+            border-radius: toRem(20);
+        }
         @media (max-width: $tablet) {
             flex-direction: column;
             align-items: center;

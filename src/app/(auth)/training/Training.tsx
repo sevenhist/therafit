@@ -2,7 +2,7 @@
 import { Header } from "@/components/Header"
 import { Button } from "@/components/ui/Button"
 import { ExcersisesResponse, TrainingsResponse } from "@/models/TrainingsPlanResponse"
-import useTrainingsPlanStore from "@/modules/trainingsPlan/store"
+import useTrainingsPlanStore from "@/modules/Plans/store"
 import { ROUTES } from "@/routes/routes"
 import { useRouter } from "next/navigation"
 import { Loader } from "vibe-library"
@@ -16,27 +16,21 @@ import youtube from "@/assets/img/youtube.svg"
 import Link from "next/link"
 import useUserStore from "@/modules/userInformation/store"
 import TransitionsModal from "@/components/TransitionsModal"
+import usePlansStore from "@/modules/Plans/store"
 
 export const Training = () => {
 
     const router = useRouter();
-    const isLoader = useTrainingsPlanStore(store => store.isLoading)
-    const deleteTrainingsPlanById = useTrainingsPlanStore(store => store.deleteTrainingsPlanById)
-    const trainingsPlan = useTrainingsPlanStore(store => store.trainingsPlan)
-    const getTrainingsPlanById = useTrainingsPlanStore(store => store.getTrainingsPlanById)
+    const isLoader = usePlansStore(store => store.isLoading)
+    const trainingsPlan = usePlansStore(store => store.trainingsPlan)
+    const getTrainingsPlanById = usePlansStore(store => store.getTrainingsPlanById)
     const user = useUserStore(store => store.user)
-    const setIsLoading = useTrainingsPlanStore(store => store.setIsLoading)
+    const setIsLoading = usePlansStore(store => store.setIsLoading)
     const [showPopup, setShowPopup] = useState(false);
     const [popupContent, setPopupContent] = useState("");
     const [isChecking, setIsChecking] = useState(true);
     const [selectedDay, setSelectedDay] = useState<string | undefined>(undefined);
 
-    const onDeleteTrainingsPlan = () => {
-        if (user) {
-            deleteTrainingsPlanById(user?.id)
-        }
-        router.push(ROUTES.home)
-    }
 
     useEffect(() => {
         if (user) {
@@ -48,7 +42,7 @@ export const Training = () => {
 
     useEffect(() => {
         if (!isChecking && trainingsPlan === null) {
-            router.push(ROUTES.AUTH.excercise_generation);
+            router.push(ROUTES.AUTH.plans_generation);
         }
     }, [isChecking, trainingsPlan]);
 
@@ -117,7 +111,7 @@ export const Training = () => {
                                         value.exercises.map((exercise: ExcersisesResponse, idx) => (
                                             <tr key={`${index}-${idx}`} className={s.table__info}>
                                                 <td>{exercise.exercise.name}</td>
-                                                <td><Link target="_blank" href={`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.exercise.name)}`} passHref><Image src={youtube} alt="icon" style={{ cursor: "pointer" }} /></Link></td>
+                                                <td><Link target="_blank" href={`https://www.youtube.com/results?search_query=${encodeURIComponent(exercise.exercise.name)} excercise`} passHref><Image src={youtube} alt="icon" style={{ cursor: "pointer" }} /></Link></td>
                                                 <td>{exercise.repetitions}</td>
                                                 <td>{exercise.sets}</td>
                                                 <td>{exercise.exercise.category}</td>
@@ -131,9 +125,6 @@ export const Training = () => {
                                     )}
                                 </tbody>
                             </table>
-                            <div className={s.trainings__btn}>
-                                <Button className={s.trainings__btn} onClick={() => onDeleteTrainingsPlan()}>Delete Training Plan</Button>
-                            </div>
                         </div>
                     </div>
                     // :

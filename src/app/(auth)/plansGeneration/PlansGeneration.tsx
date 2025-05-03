@@ -1,5 +1,5 @@
 'use client'
-import s from "./ExcerciseGeneration.module.scss"
+import s from "./PlansGeneration.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field, FieldBox } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
@@ -8,7 +8,7 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import background from "@/assets/img/Group.png"
-import useTrainingsPlanStore from "@/modules/trainingsPlan/store";
+import useTrainingsPlanStore from "@/modules/Plans/store";
 
 import { useEffect, useState } from "react";
 import { Loader } from "vibe-library";
@@ -24,15 +24,15 @@ interface FormData {
     TimesPerWeek: number
 }
 
-export const ExcerciseGeneration = () => {
+export const PlansGeneration = () => {
     const router = useRouter();
-    const getTrainingsPlan = useTrainingsPlanStore(store => store.getTrainingsPlan)
+    const generatePlans = useTrainingsPlanStore(store => store.generatePlans)
     const isLoading = useTrainingsPlanStore(state => state.isLoading);
     const user = useUserStore(store => store.user)
     const getTrainingsPlanById = useTrainingsPlanStore(store => store.getTrainingsPlanById)
     const trainingsPlan = useTrainingsPlanStore(state => state.trainingsPlan);
     // const setIsLoading = useTrainingsPlanStore(store => store.setIsLoading)
-    const [trainingsLoader, setTrainingsLoader] = useState(false);
+    const [trainingsLoader, setTrainingsLoader] = useState(isLoading);
     const {
         register,
         handleSubmit,
@@ -44,32 +44,16 @@ export const ExcerciseGeneration = () => {
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
-            setTrainingsLoader(true)
-            await getTrainingsPlan(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight).finally(() => {
-                setTrainingsLoader(false)
-                // router.push(ROUTES.AUTH.training)
+            //setTrainingsLoader(true)
+            await generatePlans(data.Age, data.CurrentWeight, data.Gender, data.Height, data.TargetWeight)
+            .finally(() => {
+                //setTrainingsLoader(false)
+                router.push(ROUTES.AUTH.training)
             })
         } catch (error) {
-            console.error("Login error:", error);
+            console.error("Excercise Geneartion error:", error);
         }
     };
-
-    // useEffect(() => {
-    //     // const fetchTrainingPlan = async () => {
-    //     if (user) {
-    //         // setIsFetching(true);
-    //         getTrainingsPlanById(user.id);
-    //         // setIsFetching(false);
-    //     }
-    //     // };
-    //     // fetchTrainingPlan()
-    // }, []);
-
-    // useEffect(() => {
-    //     if (trainingsPlan !== null) {
-    //         router.push(ROUTES.AUTH.training);
-    //     }
-    // }, [trainingsPlan]);
 
     const fields: Array<Field> = [
         {
@@ -128,10 +112,7 @@ export const ExcerciseGeneration = () => {
             <div>
                 <Header />
                 <div className={s.loader}>
-                    {
-                        trainingsLoader &&
-                        <h3>Please wait, your training plan is being generated. This may take up to 3 minutes.</h3>
-                    }
+                        <h3>Please wait, your plans are being generated. This may take up to 3 minutes.</h3>
                     <Loader size="48" />
                 </div>
             </div>
@@ -149,7 +130,7 @@ export const ExcerciseGeneration = () => {
                 />
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className={s.excerciseGeneration__form}>
-                <h1 className={s.excerciseGeneration__title}>Training Plan</h1>
+                <h1 className={s.excerciseGeneration__title}>Generate your Plans</h1>
                 {
                     fields.map((field, key) => (
                         <FieldBox
@@ -166,7 +147,7 @@ export const ExcerciseGeneration = () => {
                         />
                     ))
                 }
-                <Button type="submit" className={s.excerciseGeneration__button}>Get Training Plan</Button>
+                <Button type="submit" className={s.excerciseGeneration__button}>Get Plans</Button>
             </form>
         </div>
     )

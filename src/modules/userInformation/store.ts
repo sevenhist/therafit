@@ -19,7 +19,7 @@ interface UserState {
     fetchLogin: (email: string, password: string) => Promise<void>,
     fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<void>,
     fetchGetUser: () => void,
-    logout: (redirect: (url: string) => void) => void,
+    logout: (redirect: (url: string) => void) => void ,
     fetchGetAllUsers: () => Promise<void>,
     changePassword: (currentPassword: string, newPassword: string) => Promise<void>
 }

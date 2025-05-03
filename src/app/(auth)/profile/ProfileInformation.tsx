@@ -8,6 +8,7 @@ import Image from "next/image";
 import background from "@/assets/img/Group.png"
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import usePlansStore from "@/modules/Plans/store";
 
 interface FormData {
     currentPassword: string,
@@ -17,8 +18,11 @@ interface FormData {
 
 export const ProfileInformation = () => {
     const changePassword = useUserStore(store => store.changePassword);
+    const deleteBothPlans = usePlansStore(store => store.deleteBothPlansById);
+    const user = useUserStore(store => store.user)
     const logout = useUserStore(store => store.logout)
     const router = useRouter();
+    const trainingPlan = usePlansStore(store => store.trainingsPlan)
     const {
         register,
         handleSubmit,
@@ -107,6 +111,9 @@ export const ProfileInformation = () => {
                 ))}
                 <Button type="submit" className={s.profile__button}>Change Password</Button>
             </form>
+            {
+                trainingPlan && <Button className={s.profile__button} onClick={() => deleteBothPlans(user!.id)}>Delete Both Plans</Button>
+            }
         </div>
     );
 }
