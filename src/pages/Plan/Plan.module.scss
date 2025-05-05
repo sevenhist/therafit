@@ -140,6 +140,7 @@
             min-width: toRem(200);
             border-radius: toRem(10);
             font-weight: 600;
+            max-width: toRem(240);
             @media(max-width: $mobileSmall) {
                 font-size: toRem(14);
                 min-width: toRem(180);
@@ -149,15 +150,5 @@
             &:hover, &:active {
                 background-color: $accentHover;
             }
-            &.fitContent {
-                min-width: auto;
-            }
-            &__icon {
-                color: $whiteColor;
-                width: toRem(20);
-                height: toRem(20);
-            }
-        
-         
     }
 }
