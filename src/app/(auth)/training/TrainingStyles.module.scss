@@ -132,6 +132,7 @@
             padding: toRem(10);
             text-align: left;
             border-bottom: toRem(1) solid $greyWhiteColor;
+            vertical-align: middle;
         }
         @media (max-width: $tablet) {
             font-size: toRem(16);
