@@ -5,6 +5,8 @@ import { Typography } from "@/components/Typography"
 import { Button } from "@/components/ui/Button"
 import Image, { StaticImageData } from "next/image"
 import Router from "next/router"
+import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 
 export interface PlanProps {
@@ -17,7 +19,7 @@ export interface PlanProps {
 }
 
 const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image, third_image, link }) => {
-    const router = Router
+
     return (
         <div className={s.plan}>
             <div className={s.plan__info}>
@@ -25,7 +27,7 @@ const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image,
                 <div className={s.plan__possibilities}>
                     <Typography variant="h4" className={s.plan__info__desc}>{description}</Typography>
                     <div className={s.plan__button}>
-                        <Button onClick={() => router.push(link)} variant="primary">Get Started</Button>
+                        <Link className={s.plan__btn} href={link}>Get Started</Link>
                     </div>
                 </div>
             </div>

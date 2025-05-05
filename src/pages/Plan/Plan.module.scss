@@ -125,5 +125,39 @@
         max-width: 33%; 
         height: auto;
     }
-    
+    &__btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            column-gap: toRem(12);
+            cursor: pointer;
+            background-color: $accent;
+            color: $whiteColor;
+            padding: toRem(24) toRem(43);
+            font-size: toRem(18);
+            text-align: center;
+            transition: all .2s ease;
+            min-width: toRem(200);
+            border-radius: toRem(10);
+            font-weight: 600;
+            @media(max-width: $mobileSmall) {
+                font-size: toRem(14);
+                min-width: toRem(180);
+                width: auto;
+                max-width: toRem(200);
+            }
+            &:hover, &:active {
+                background-color: $accentHover;
+            }
+            &.fitContent {
+                min-width: auto;
+            }
+            &__icon {
+                color: $whiteColor;
+                width: toRem(20);
+                height: toRem(20);
+            }
+        
+         
+    }
 }
