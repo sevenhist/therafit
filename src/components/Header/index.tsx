@@ -30,29 +30,39 @@ export const Header = () => {
                     }
                 }}>
                     <Logo />
-                    <Box ui={{
-                        flexDirection: 'row',
-                        gap: 10,
-                        grow: true,
-                        align: 'center',
-                        justify: 'end',
-                        md: {
-                            gap: 3
-                        }
-                    }}>
-                        <Link href={ROUTES.AUTH.training} className={s.header__link}>EXERCISES</Link>
-                        <Link href={ROUTES.AUTH.nutrition} className={s.header__link}>NUTRITION</Link>
-                        {
-                            user && (<Link href={ROUTES.home} className={s.header__link} onClick={() => {logout(router.push)}}>LOGOUT</Link>)
-                        }
                         {
                             user ? (
-                                <Link href={ROUTES.AUTH.profile} className={s.header__link}>PROFILE</Link>
+                                <Box ui={{
+                                    flexDirection: 'row',
+                                    gap: 10,
+                                    grow: true,
+                                    align: 'center',
+                                    justify: 'end',
+                                    md: {
+                                        gap: 3
+                                    }
+                                }}>
+                                    <Link href={ROUTES.AUTH.profile} className={s.header__link}>PROFILE</Link>
+                                    <Link href={ROUTES.AUTH.training} className={s.header__link}>EXERCISES</Link>
+                                    <Link href={ROUTES.AUTH.nutrition} className={s.header__link}>NUTRITION</Link>
+                                    <Link href={ROUTES.home} className={s.header__link} onClick={() => {logout(router.push)}}>LOGOUT</Link>
+                                </Box>
                             ) : (
+                                <Box ui={{
+                                    flexDirection: 'row',
+                                    gap: 10,
+                                    grow: true,
+                                    align: 'center',
+                                    justify: 'end',
+                                    md: {
+                                        gap: 3
+                                    }
+                                }}>
                                 <Link href={ROUTES.AUTH.login} className={s.header__link}>LOGIN</Link>
+                                <Link href={ROUTES.AUTH.registration} className={s.header__link}>REGISTRATION</Link>
+                                </Box>
                             )
                         }
-                    </Box>
                 </Box>
             </Box>
         </>
