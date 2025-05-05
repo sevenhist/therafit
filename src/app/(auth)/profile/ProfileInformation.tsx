@@ -117,10 +117,10 @@ export const ProfileInformation = () => {
                     />
                 ))}
                 <Button type="submit" className={s.profile__button}>Change Password</Button>
+                {
+                    trainingPlan && <Button className={s.profile__button} onClick={() => deleteBothPlans(user!.id)}>Delete Both Plans</Button>
+                }
             </form>
-            {
-                trainingPlan && <Button className={s.profile__button} onClick={() => deleteBothPlans(user!.id)}>Delete Both Plans</Button>
-            }
         </div>
     );
 }
