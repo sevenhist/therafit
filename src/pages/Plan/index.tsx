@@ -27,7 +27,7 @@ const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image,
                 <div className={s.plan__possibilities}>
                     <Typography variant="h4" className={s.plan__info__desc}>{description}</Typography>
                     <div className={s.plan__button}>
-                        <Link className={s.plan__btn} href={link}>Get Started</Link>
+                        <Link href={link ? link : ''} className={s.plan__btn} >Get Started</Link>
                     </div>
                 </div>
             </div>
