@@ -87,7 +87,7 @@ export const Training = () => {
                         <div className={s.trainings__preview}>
                             <Typography variant="h2" className={s.trainings__title}>Training plan</Typography>
                             <div className={s.trainings__about}>
-                                <Image src={frauOnTrainings} alt="image"></Image>
+                                <Image className={s.trainings__img} src={frauOnTrainings} alt="image"></Image>
                                 <div className={s.trainings__info}>
                                     <p className={s.trainings__name}>{trainingsPlan?.trainingPlan.trainingPlan.name}</p>
                                     <select className={s.select} onChange={(event) => {

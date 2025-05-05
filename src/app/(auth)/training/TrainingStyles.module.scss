@@ -29,6 +29,13 @@
 .trainings {
     display: flex;
     flex-direction: column;
+    &__img {
+        max-width: toRem(493);
+        max-height: toRem(329);
+        width: 100%;
+        height: 100%;
+        border-radius: toRem(20);
+    }
     &__info {
         display: flex;
         flex-direction: column;
@@ -125,13 +132,6 @@
             padding: toRem(10);
             text-align: left;
             border-bottom: toRem(1) solid $greyWhiteColor;
-        }
-        img {
-            border-radius: toRem(20);
-            max-width: toRem(493);
-            max-height: toRem(329);
-            width: 100%;
-            height: 100%;
         }
         @media (max-width: $tablet) {
             font-size: toRem(16);
