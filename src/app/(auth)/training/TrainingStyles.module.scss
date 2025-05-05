@@ -128,6 +128,10 @@
         }
         img {
             border-radius: toRem(20);
+            max-width: toRem(493);
+            max-height: toRem(329);
+            width: 100%;
+            height: 100%;
         }
         @media (max-width: $tablet) {
             font-size: toRem(16);
