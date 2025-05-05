@@ -10,7 +10,7 @@ import useUserStore from "@/modules/userInformation/store";
 import { Typography } from "@/components/Typography";
 import frauEatSalat from "@/assets/img/bewusste-ernaehrung-bild.jpg"
 import Image from "next/image";
-import info from "@/assets/img/info.svg"
+import info from "@/assets/img/info1.jpeg"
 import TransitionsModal from "@/components/TransitionsModal";
 import { NutritionMeal, NutritionMealsPerWeekday } from "@/models/NutritionPlanResponse";
 
