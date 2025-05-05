@@ -9,6 +9,7 @@ import secondFood from "../../../assets/img/food2.svg"
 import thirdFood from "../../../assets/img/food3.svg"
 import Plan, { PlanProps } from "@/pages/Plan";
 import Preview from "@/pages/Preview";
+import { ROUTES } from "@/routes/routes";
 
 export default function Home() {
 
@@ -18,14 +19,16 @@ export default function Home() {
       description: "Get Your Personalized Fitness Plan Now!",
       first_image: first_fitness_pict,
       secondary_image: second_fitness_pict,
-      third_image: fitness_main_pict
+      third_image: fitness_main_pict,
+      link: ROUTES.AUTH.training
     },
     {
       title: "Nutrition Plan Made For You",
       description: "Get Your Personalized Nutrition Plan Now!",
       first_image: thirdFood,
       secondary_image: secondFood,
-      third_image: firstFood
+      third_image: firstFood,
+      link: ROUTES.AUTH.nutrition
     },
   ]
   return (
@@ -42,6 +45,7 @@ export default function Home() {
               first_image={plan.first_image}
               secondary_image={plan.secondary_image} 
               third_image={plan.third_image}
+              link={plan.link}
             />
           ))
         }

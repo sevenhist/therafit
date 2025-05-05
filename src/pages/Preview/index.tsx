@@ -17,7 +17,6 @@ const Preview: FC = () => {
                     <Typography variant="body">Train smarter, eat better – for FREE!<br/>Your perfect fitness & nutrition plan is just a click away. No excuses, just results!</Typography>
                 </div>
                 <div className={s.content__buttons}>
-                    <Button variant="primary">Get started</Button>
                     <Button  variant="secondary" onClick={() => {
                         document.getElementById("plan")?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}>Preview</Button>

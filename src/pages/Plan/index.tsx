@@ -4,16 +4,20 @@ import s from "./Plan.module.scss"
 import { Typography } from "@/components/Typography"
 import { Button } from "@/components/ui/Button"
 import Image, { StaticImageData } from "next/image"
+import Router from "next/router"
+
 
 export interface PlanProps {
     title: string,
     description: string,
     first_image: string | StaticImageData,
     secondary_image: string | StaticImageData,
-    third_image: string | StaticImageData
+    third_image: string | StaticImageData,
+    link: string
 }
 
-const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image, third_image }) => {
+const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image, third_image, link }) => {
+    const router = Router
     return (
         <div className={s.plan}>
             <div className={s.plan__info}>
@@ -21,7 +25,7 @@ const Plan: FC<PlanProps> = ({ title, description, first_image, secondary_image,
                 <div className={s.plan__possibilities}>
                     <Typography variant="h4" className={s.plan__info__desc}>{description}</Typography>
                     <div className={s.plan__button}>
-                        <Button variant="primary">Get Started</Button>
+                        <Button onClick={() => router.push(link)} variant="primary">Get Started</Button>
                     </div>
                 </div>
             </div>
