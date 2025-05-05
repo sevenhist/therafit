@@ -130,7 +130,7 @@ export const Registration: FC = () => {
             <Button className={s.registration__button} type="submit"><p>Sign up</p></Button>
             <div className={s.registration__footer}>
                 <p className={s.registration__footer__text}>Already have an account?</p>
-                <Link className={s.registration__footer__login} href={ROUTES.AUTH.login}>Sign in</Link>
+                <Link className={s.registration__footer__login} href={ROUTES.AUTH.login}>Login</Link>
             </div>
         </form>
     </div>
