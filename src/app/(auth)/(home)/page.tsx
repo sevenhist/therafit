@@ -1,12 +1,12 @@
 'use client'
 import { Header } from "@/components/Header";
 import s from "./Page.module.scss"
-import fitness_main_pict from "../../../assets/img/runner.svg"
-import first_fitness_pict from "../../../assets/img/workauter.svg"
-import second_fitness_pict from "../../../assets/img/trainerin.svg"
-import firstFood from "../../../assets/img/food1.svg"
-import secondFood from "../../../assets/img/food2.svg"
-import thirdFood from "../../../assets/img/food3.svg"
+import fitness_main_pict from "../../../assets/img/runner.jpg"
+import first_fitness_pict from "../../../assets/img/workauter.jpg"
+import second_fitness_pict from "../../../assets/img/trainerin.jpg"
+import firstFood from "../../../assets/img/food1.jpg"
+import secondFood from "../../../assets/img/food2.jpg"
+import thirdFood from "../../../assets/img/food3.jpg"
 import Plan, { PlanProps } from "@/pages/Plan";
 import Preview from "@/pages/Preview";
 import { ROUTES } from "@/routes/routes";
