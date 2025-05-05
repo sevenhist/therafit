@@ -109,6 +109,7 @@
         &__img {
             max-width: 100%; 
             height: auto;
+            border-radius: toRem(20);
         }
     }
     &__second_part {
@@ -124,6 +125,7 @@
     &__second__img {
         max-width: 33%; 
         height: auto;
+        border-radius: toRem(20);
     }
     &__btn {
             display: flex;

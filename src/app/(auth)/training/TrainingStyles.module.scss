@@ -126,6 +126,9 @@
             text-align: left;
             border-bottom: toRem(1) solid $greyWhiteColor;
         }
+        img {
+            border-radius: toRem(20);
+        }
         @media (max-width: $tablet) {
             font-size: toRem(16);
             img {
