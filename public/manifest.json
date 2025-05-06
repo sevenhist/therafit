@@ -3,7 +3,7 @@
     "short_name": "Therafit",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
+    "background_color": "#0000",
     "theme_color": "#007bff",
     "icons": [
       {
