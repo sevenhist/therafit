@@ -10,6 +10,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* PWA-Links */}
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/vercel.svg" />
+        <meta name="theme-color" content="#007bff" />
+      </head>
       <body>
         <AuthProvider>{children}</AuthProvider>
         <ToastContainer 
