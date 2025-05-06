@@ -64,7 +64,7 @@
         & img {
             width: toRem(493.4999694824219);
             height: toRem(329);
-            border-radius: toRem(20);
+            border-radius: toRem(48);
         }
         @media (max-width: $tablet) {
             flex-direction: column;
