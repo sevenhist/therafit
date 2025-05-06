@@ -1,6 +1,6 @@
 {
-    "name": "Meine Tolle PWA",
-    "short_name": "Meine PWA",
+    "name": "Therafit",
+    "short_name": "Therafit",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
