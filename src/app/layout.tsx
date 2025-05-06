@@ -14,7 +14,7 @@ export default function RootLayout({
         {/* PWA-Links */}
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/vercel.svg" />
-        <meta name="theme-color" content="#007bff" />
+        <meta name="theme-color" content="#000000" />
       </head>
       <body>
         <AuthProvider>{children}</AuthProvider>
