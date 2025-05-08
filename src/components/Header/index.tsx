@@ -28,7 +28,7 @@ export const Header = () => {
                         justify: 'center',
                         px: 4
                     }
-                }}>
+                }} style={{ zIndex: 12 }}>
                     <Logo />
                         {
                             user ? (
