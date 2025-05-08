@@ -8,6 +8,7 @@
     display: inline-flex;
     justify-content: space-between;
     width: 100%;
+    z-index: 5;
     &__list {
         display: flex;
         column-gap: toRem(10);
