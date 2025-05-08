@@ -2,6 +2,8 @@ import axios from 'axios'
 
 export const API_URL = `https://therafit-backend.up.railway.app/api`
 
+// export const API_URL = `http://localhost:3001/api`
+
 const $api = axios.create({
     withCredentials: true,
     baseURL: API_URL

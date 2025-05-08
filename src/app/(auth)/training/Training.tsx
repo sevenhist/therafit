@@ -48,7 +48,7 @@ export const Training = () => {
 
 
     useEffect(() => {
-        const storedDay = localStorage.getItem("selectedTrainingDay");
+        const storedDay = localStorage.getItem("selectedDay");
         const defaultDay = trainingsPlan?.trainingPlan.trainings[0].day;
 
         if (storedDay && trainingsPlan?.trainingPlan.trainings.some(day => day.day === storedDay)) {
@@ -60,7 +60,7 @@ export const Training = () => {
 
     useEffect(() => {
         if (selectedDay) {
-            localStorage.setItem("selectedTrainingDay", selectedDay);
+            localStorage.setItem("selectedDay", selectedDay);
         }
     }, [selectedDay]);
     

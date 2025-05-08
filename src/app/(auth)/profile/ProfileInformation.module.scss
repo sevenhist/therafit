@@ -16,6 +16,8 @@
     }
 }
 
+
+
 .profile {
     display: flex;
     align-items: center;
@@ -42,6 +44,26 @@
         }
         &:hover {
             background-color: $greyColorHover !important;
+        }
+    }
+    &__red__button {
+        border-radius: toRem(12);
+        max-width: toRem(439);
+        max-height: toRem(80);
+        min-height: toRem(60);
+        width: 100%;
+        height: 100%;
+        background-color: $red;
+        & p {
+            text-align: center;
+            font-size: toRem(18);
+            font-weight: 600;
+        }
+        &:hover, :active {
+            opacity: 0.8;
+        }
+        @media(max-width: $mobileSmall) {
+            max-width: toRem(200);
         }
     }
     &__title {

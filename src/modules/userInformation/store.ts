@@ -19,9 +19,10 @@ interface UserState {
     fetchLogin: (email: string, password: string) => Promise<void>,
     fetchRegistration: (name: string, last_name: string, email: string, password: string) => Promise<void>,
     fetchGetUser: () => void,
-    logout: (redirect: (url: string) => void) => void ,
+    logout: (redirect: (url: string) => void) => void,
     fetchGetAllUsers: () => Promise<void>,
-    changePassword: (currentPassword: string, newPassword: string) => Promise<void>
+    changePassword: (currentPassword: string, newPassword: string) => Promise<void>,
+    deleteUserById: (id: number) => Promise<void>
 }
 
 const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
@@ -31,7 +32,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
     setAuth: (action: boolean) => set(() => ({
         isAuth: action,
     })),
-    setUser: (user: IUser | null) => set(() => ({
+    setUser: (user: IUser | null) => set(() => ({
         user: user,
     })),
     setIsLoading: (load: boolean) => set(() => ({
@@ -73,9 +74,9 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             .then((response) => {
                 const user = response.data.data.user;
                 get().setUser(user);
-                toast("You are logged in", {
-                    type: "success"
-                });
+                // toast("You are logged in", {
+                //     type: "success"
+                // });
             }) // then wird nur dannn funktioniert wenn keine fehler war, sondern wenn status code 200, 201, 202 erfolgreich ist
             .catch((e) => {
                 //console.log(e)
@@ -119,7 +120,7 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
         }
     },
     changePassword: async (currentPassword: string, newPassword: string) => {
-        try { 
+        try {
             await AuthService.changePassword(currentPassword, newPassword);
             toast("Password changed successfully", {
                 type: "success"
@@ -128,6 +129,22 @@ const useUserStore = create<UserState>()(devtools(immer((set, get) => ({
             toast(error.response?.data?.message || error.message, {
                 type: "error"
             });
+        }
+    },
+    deleteUserById: async (id: number) => {
+        try {
+            get().setIsLoading(true);
+            await AuthService.deleteUserById(id);
+            localStorage.removeItem('accessToken');
+            set(() => ({
+                user: null,
+                isAuth: false,
+            }));
+            toast("User deleted", { type: "success" });
+        } catch (error: any) {
+            toast(error.response?.data?.message || error.message, { type: "error" });
+        } finally {
+            get().setIsLoading(false);
         }
     }
 })), { name: 'userStore', version: 1 }))

@@ -107,6 +107,7 @@ const usePlansStore = create<PlansState>()(devtools(immer((set, get) => ({
     },
     deleteBothPlansById: async (id: number) => {
         try {
+            get().setIsLoading(true);
             await PlansService.deleteBothPlansById(id);
             get().setTrainingsPlan(null);
             get().setNutritionPlan(null);
@@ -115,8 +116,10 @@ const usePlansStore = create<PlansState>()(devtools(immer((set, get) => ({
             toast("Success Delete of Plans", { type: "success" });
         } catch (error: any) {
             toast(error.response?.data?.message || error.message, { type: "error" });
-        } 
-    }    
+        } finally {
+            get().setIsLoading(false);
+        }
+    },
 })), { name: 'plansStore', version: 1 }))
 
 export default usePlansStore

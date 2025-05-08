@@ -39,7 +39,7 @@ export const Nutrition = () => {
     }, [isChecking, nutritionPlan]);
 
     useEffect(() => {
-        const storedDay = localStorage.getItem("selectedNutritionDay");
+        const storedDay = localStorage.getItem("selectedDay")
         const defaultDay = nutritionPlan?.nutritionPlan.nutritionPlan.mealsProWeekday[0].weekday;
     
         if (storedDay && nutritionPlan?.nutritionPlan.nutritionPlan.mealsProWeekday.some(day => day.weekday === storedDay)) {
@@ -51,7 +51,7 @@ export const Nutrition = () => {
 
     useEffect(() => {
         if (selectedDay) {
-            localStorage.setItem("selectedNutritionDay", selectedDay);
+            localStorage.setItem("selectedDay", selectedDay);
         }
     }, [selectedDay]);
     

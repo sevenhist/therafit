@@ -9,7 +9,9 @@ import background from "@/assets/img/Group.png"
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import usePlansStore from "@/modules/Plans/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import TransitionsModal from "@/components/TransitionsModal";
+import { ROUTES } from "@/routes/routes";
 
 interface FormData {
     currentPassword: string,
@@ -25,6 +27,7 @@ export const ProfileInformation = () => {
     const router = useRouter();
     const trainingPlan = usePlansStore(store => store.trainingsPlan);
     const getTrainingsPlanById = usePlansStore(store => store.getTrainingsPlanById);
+    const deleteUserById = useUserStore(store => store.deleteUserById)
     const {
         register,
         handleSubmit,
@@ -117,10 +120,11 @@ export const ProfileInformation = () => {
                     />
                 ))}
                 <Button type="submit" className={s.profile__button}>Change Password</Button>
-                {
-                    trainingPlan && <Button className={s.profile__button} onClick={() => deleteBothPlans(user!.id)}>Delete Both Plans</Button>
-                }
             </form>
+            <button className={s.profile__red__button} onClick={() => { deleteUserById(user!.id) }} ><p>Delete User</p></button>
+            {
+                trainingPlan && <button className={s.profile__red__button} onClick={() => deleteBothPlans(user!.id).then(() => router.push(ROUTES.home))}><p>Delete Both Plans</p></button>
+            }
         </div>
     );
 }

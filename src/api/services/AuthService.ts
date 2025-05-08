@@ -24,4 +24,9 @@ export default class AuthService {
     static async changePassword(currentPassword: string, newPassword: string): Promise<AxiosResponse> {
         return $api.post('/auth/change-password', { currentPassword, newPassword });
     }
+    static async deleteUserById(id: number): Promise<AxiosResponse> {
+        return $api.delete('/auth/delete-user', {
+            data: { id }
+        });
+    }
 }
