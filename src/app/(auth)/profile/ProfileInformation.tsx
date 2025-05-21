@@ -120,11 +120,11 @@ export const ProfileInformation = () => {
                     />
                 ))}
                 <Button type="submit" className={s.profile__button}>Change Password</Button>
+                <button className={s.profile__red__button} onClick={() => { deleteUserById(user!.id) }} ><p>Delete User</p></button>
+                {
+                    trainingPlan && <button className={s.profile__red__button} onClick={() => deleteBothPlans(user!.id).then(() => router.push(ROUTES.home))}><p>Delete Both Plans</p></button>
+                }
             </form>
-            <button className={s.profile__red__button} onClick={() => { deleteUserById(user!.id) }} ><p>Delete User</p></button>
-            {
-                trainingPlan && <button className={s.profile__red__button} onClick={() => deleteBothPlans(user!.id).then(() => router.push(ROUTES.home))}><p>Delete Both Plans</p></button>
-            }
         </div>
     );
 }

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Включаем режим статического экспорта
+  // output: 'export', 
   // images: {
-  //   unoptimized: true, // Отключаем оптимизацию изображений (некоторые старые методы могут не поддерживаться)
+  //   unoptimized: true, 
   // }
   reactStrictMode: false,
 };
