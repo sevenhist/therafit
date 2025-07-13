@@ -67,28 +67,19 @@ const usePlansStore = create<PlansState>()(devtools(immer((set, get) => ({
         await PlansService.generatePlans(current_weight, target_weight, age, gender, height)
         .then((response) => {
             console.log("TrainingsPlan: ", response.data)
-            //get().setTrainingsPlan(response.data)
-            // toast("Success Get Trainings Plan", {
-            //     type: "success"
-            // });
         })     
         .catch ((error: any) => {
             toast(error.response?.data?.message || error.message, {
                 type: "error"
             });
         }) 
-        .finally(() => {
-            //get().setIsLoading(false);
-        })
     },
     getTrainingsPlanById: async (id: number) => {
         get().setIsLoading(true);
         try {
             const response = await PlansService.getTrainingsPlanById(id);
             get().setTrainingsPlan(response.data);
-            //toast("Success Get Trainings Plan", { type: "success" });
         } catch (error: any) {
-            // toast(error.response?.data?.message || error.message, { type: "error" });
         } finally {
             get().setIsLoading(false);
         }
@@ -98,9 +89,7 @@ const usePlansStore = create<PlansState>()(devtools(immer((set, get) => ({
         try {
             const response = await PlansService.getNutritionPlanById(id);
             get().setNutritionPlan(response.data);
-            //toast("Success Get Trainings Plan", { type: "success" });
         } catch (error: any) {
-            // toast(error.response?.data?.message || error.message, { type: "error" });
         } finally {
             get().setIsLoading(false);
         }
