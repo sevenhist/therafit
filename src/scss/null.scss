@@ -32,6 +32,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	//text-rendering: optimizeLegibility;
+	overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
