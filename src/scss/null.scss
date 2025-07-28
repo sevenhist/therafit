@@ -20,6 +20,8 @@ a:active {
 html,
 body {
 	min-width: $minWidth + px;
+	overscroll-behavior-y: contain; // или auto
+  	-webkit-overflow-scrolling: touch;
 }
 body {
 	color: #fff;
