@@ -20,8 +20,6 @@ a:active {
 html,
 body {
 	min-width: $minWidth + px;
-	overscroll-behavior-y: contain; // или auto
-  	-webkit-overflow-scrolling: touch;
 }
 body {
 	color: #fff;
@@ -31,7 +29,8 @@ body {
 	font-family: $fontFamily;
 	font-size: $fontSize;
 	overflow-x: hidden;
-  	display: block;
+	display: flex;
+	flex-direction: column;
 	//text-rendering: optimizeLegibility;
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;

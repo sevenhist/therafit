@@ -3,16 +3,11 @@
 .container {
     display: flex;
     flex-direction: column;
-    // row-gap: toRem(140);
+    row-gap: toRem(140);
     min-height: 100vh;
     padding: 0 toRem(60);
     width: 100%;
-    // overflow-y: auto;
     @media(max-width: $mobileSmall) {
         padding: 0 toRem(20);
     }
-}
-
-.mainContent {
-    flex: 1 1 auto;
 }
