@@ -9,7 +9,7 @@ export interface ContainerProps {
 export const Container: FC<ContainerProps> = ({children}) => {
     return (
         <div className={s.container}>
-            {children}
+            <div className={s.mainContent}>{children}</div>
             <Footer />
         </div>
     )
